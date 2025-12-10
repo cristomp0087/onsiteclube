@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OnSite Club – Inch Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- CSS global do site -->
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <!-- CSS específico da calculadora (opcional, mas você já criou a pasta) -->
+  <link rel="stylesheet" href="./calculator.css" />
+</head>
+<body>
+
+  <!-- HEADER REAPROVEITADO -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        ONSITE <span>CLUB</span>
+      </div>
+      <nav class="main-nav">
+        <a href="../index.html#hero">Home</a>
+        <a href="../index.html#levels">Levels</a>
+        <a href="../index.html#shop">Shop</a>
+        <a href="../index.html#club">The Club</a>
+        <a href="../index.html#join" class="nav-cta">Join</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL DA CALCULADORA -->
+  <main class="section inch-page">
+    <div class="container">
+
+      <div class="modal-dialog inch-card-wrapper">
+        <div class="card inch-card">
+          <h1>Inch Calculator</h1>
+          <p>
+            Digite valores em inches, por exemplo:<br>
+            <strong>3 1/4</strong>, <strong>5 3/8</strong>, <strong>1/2</strong> ou <strong>3.75</strong>.
+          </p>
+
+          <label for="inchAInput">Valor A (inches)</label>
+          <input id="inchAInput" type="text" placeholder='Ex.: 3 1/4' />
+
+          <label for="inchBInput">Valor B (inches)</label>
+          <input id="inchBInput" type="text" placeholder='Ex.: 5 3/8' />
+
+          <div class="ops inch-ops">
+            <button data-op="+">+</button>
+            <button data-op="-">−</button>
+            <button data-op="*">×</button>
+            <button data-op="/">÷</button>
+          </div>
+
+          <div class="error" id="inchErrorMsg"></div>
+
+          <div class="result">
+            <div class="row">
+              <span class="label-small">Resultado (decimal):</span>
+              <span id="inchResDecimal">–</span>
+            </div>
+            <div class="row">
+              <span class="label-small">Resultado (fração até 1/16"):</span>
+              <span id="inchResFraction">–</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:1.5rem;font-size:0.85rem;">
+        <a href="../index.html" style="text-decoration:underline;">← Voltar para OnSite Club</a>
+      </p>
+
+    </div>
+  </main>
+
+  <!-- JS DA CALCULADORA -->
+  <script src="../js/calculator.js"></script>
+
+
+  
+</body>
+</html>

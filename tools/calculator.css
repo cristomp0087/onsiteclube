@@ -1,0 +1,125 @@
+/* =========================================
+   INCH CALCULATOR – PÁGINA DEDICADA
+   ========================================= */
+
+/* Main da calculadora: usa o fundo do site mas dá respiro */
+.inch-page {
+  padding-top: 4rem;           /* espaço abaixo do header fixo */
+  padding-bottom: 4rem;
+}
+
+/* Wrapper que centraliza o “card” da calculadora */
+.inch-card-wrapper {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* Card principal da calculadora (reaproveita a vibe do site) */
+.inch-card {
+  background: var(--bg-dark-alt);
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  padding: 1.75rem 1.75rem 1.9rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Título */
+.inch-card h1 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Texto explicando formato dos valores */
+.inch-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Labels dos inputs */
+.inch-card label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-top: 0.6rem;
+}
+
+/* Inputs de texto */
+.inch-card input {
+  margin-top: 0.25rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: #101215;
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+.inch-card input::placeholder {
+  color: #626773;
+}
+
+/* Botões de operação (+ - × ÷) */
+.inch-ops {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.inch-ops button {
+  flex: 1;
+  padding: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: #191c23;
+  color: var(--text-main);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.inch-ops button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* Mensagem de erro */
+.error {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--error);
+  min-height: 1em;
+}
+
+/* Bloco de resultados */
+.result {
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.85rem;
+}
+
+.result .row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+}
+
+.label-small {
+  color: var(--text-muted);
+}
+
+/* Mobile: dá um pouco mais de respiro lateral */
+@media (max-width: 640px) {
+  .inch-card-wrapper {
+    padding: 0 0.5rem;
+  }
+
+  .inch-card {
+    padding: 1.5rem 1.25rem 1.7rem;
+  }
+}

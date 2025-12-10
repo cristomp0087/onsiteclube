@@ -35,9 +35,6 @@
     </div>
   </header>
 
-  <!-- =========================================================
-       MAIN (HERO + SEÇÕES)
-       ========================================================= -->
   <main>
 
     <!-- =======================================================
@@ -55,12 +52,7 @@
           Start Building
         </button>
 
-        <!-- Botão da calculadora normal -->
-        <button class="btn-outline" type="button" id="openInchCalc">
-          Inch Calculator
-        </button>
-
-        <!-- JANELA DE TRADES COLADA NOS BOTÕES -->
+               <!-- JANELA DE TRADES COLADA NOS BOTÕES -->
         <div class="trade-picker" id="tradePicker" aria-hidden="true">
           <div class="trade-picker-header">
             <span class="trade-picker-title">Choose your trade</span>
@@ -363,6 +355,71 @@
     </div><!-- /.shop-main -->
   </div>
 </section>
+
+
+<!-- ==============================
+     ONSITE TOOLS – BLOCO DE UTILIDADES
+     ============================== -->
+<section id="onsite-tools" class="section tools">
+  <div class="container tools-inner">
+
+    <header class="tools-header">
+      <h2 class="tools-title">OnSite Tools</h2>
+      <p class="tools-subtitle">
+        Pequenas ferramentas para deixar o dia de obra mais rápido.
+      </p>
+    </header>
+
+    <div class="tools-grid">
+      <!-- Tool 1 – Inch Calculator -->
+      <article class="tool-card tool-card-calculator">
+        <h3 class="tool-name">Inch Calculator</h3>
+        <p class="tool-description">
+          Some, divida e converta medidas em inches sem precisar fazer conta de cabeça.
+        </p>
+        <button 
+          class="tool-cta" 
+          type="button" 
+          data-tool="calculator">
+          Abrir calculadora
+        </button>
+      </article>
+
+      <!-- Tool 2 – Hour Tracker -->
+      <article class="tool-card tool-card-timer">
+        <h3 class="tool-name">Hour Tracker</h3>
+        <p class="tool-description">
+          Marque horas de serviço em cada job e tenha uma noção rápida do tempo gasto.
+        </p>
+        <button 
+          class="tool-cta" 
+          type="button" 
+          data-tool="timer">
+          Iniciar cronômetro
+        </button>
+      </article>
+    </div>
+
+<!-- Tool 3 – Smart Checklist -->
+  <article class="tool-card tool-card-checklist">
+    <h3 class="tool-name">Job Checklist</h3>
+    <p class="tool-description">
+      Gere uma checklist para cada job e não esqueça nenhum passo importante.
+      Em breve com IA para sugerir etapas e materiais.
+    </p>
+    <button 
+      class="tool-cta" 
+      type="button" 
+      data-tool="checklist">
+      Abrir checklist
+    </button>
+  </article>
+  </div>
+</section>
+
+
+
+
    <!-- =======================================================
      THE CLUB – MINI MANIFESTO VISUAL (ORGULHO / PERTENCIMENTO)
      ======================================================= -->
@@ -496,7 +553,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>
-        OnSite Club™ · We build what you live in.
+        OnSite Club™ · Wear what you do.
       </div>
       <div class="footer-links">
         <a href="#">Instagram</a>
@@ -507,441 +564,8 @@
     </div>
   </footer>
 
-  <!-- =========================================================
-       MODAL – INCH CALCULATOR
-       ========================================================= -->
-  <div class="modal" id="inchCalcModal" aria-hidden="true">
-    <div class="modal-backdrop"></div>
 
-    <div class="modal-dialog" role="dialog" aria-modal="true">
-      <button class="modal-close" id="closeInchCalc" aria-label="Close">×</button>
-
-      <div class="card inch-card">
-        <h1>Inch Calculator</h1>
-        <p>
-          Digite valores em inches, por exemplo:<br>
-          <strong>3 1/4</strong>, <strong>5 3/8</strong>, <strong>1/2</strong> ou <strong>3.75</strong>.
-        </p>
-
-        <label for="inchAInput">Valor A (inches)</label>
-        <input id="inchAInput" type="text" placeholder='Ex.: 3 1/4' />
-
-        <label for="inchBInput">Valor B (inches)</label>
-        <input id="inchBInput" type="text" placeholder='Ex.: 5 3/8' />
-
-        <div class="ops inch-ops">
-          <button data-op="+">+</button>
-          <button data-op="-">−</button>
-          <button data-op="*">×</button>
-          <button data-op="/">÷</button>
-        </div>
-
-        <div class="error" id="inchErrorMsg"></div>
-
-        <div class="result">
-          <div class="row">
-            <span class="label-small">Resultado (decimal):</span>
-            <span id="inchResDecimal">–</span>
-          </div>
-          <div class="row">
-            <span class="label-small">Resultado (fração até 1/16"):</span>
-            <span id="inchResFraction">–</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- =========================================================
-       SCRIPT – MODAL + CALCULADORA
-       ========================================================= -->
-  <script>
-    // ---- MODAL: abrir / fechar ----
-    const openBtn  = document.getElementById("openInchCalc");
-    const modal    = document.getElementById("inchCalcModal");
-    const closeBtn = document.getElementById("closeInchCalc");
-    const backdrop = modal.querySelector(".modal-backdrop");
-
-    function openModal() {
-      modal.classList.add("is-open");
-      inchAInput.focus();
-    }
-
-    function closeModal() {
-      modal.classList.remove("is-open");
-    }
-
-    openBtn.addEventListener("click", openModal);
-    closeBtn.addEventListener("click", closeModal);
-    backdrop.addEventListener("click", closeModal);
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("is-open")) {
-        closeModal();
-      }
-    });
-
-    // ---- CALCULADORA ----
-    const inchAInput      = document.getElementById("inchAInput");
-    const inchBInput      = document.getElementById("inchBInput");
-    const buttons         = document.querySelectorAll(".inch-ops button[data-op]");
-    const errorMsg        = document.getElementById("inchErrorMsg");
-    const resDecimal      = document.getElementById("inchResDecimal");
-    const resFraction     = document.getElementById("inchResFraction");
-
-    function parseInches(str) {
-      if (!str) return NaN;
-      str = str.replace(/"/g, "").trim();
-      if (!str) return NaN;
-
-      const parts = str.split(/\s+/);
-      let total = 0;
-
-      if (parts.length === 1) {
-        total = parseFractionOrNumber(parts[0]);
-      } else if (parts.length === 2) {
-        const whole = parseFloat(parts[0]);
-        const frac  = parseFractionOrNumber(parts[1]);
-        if (isNaN(whole) || isNaN(frac)) return NaN;
-        total = whole + frac;
-      } else {
-        return NaN;
-      }
-      return total;
-    }
-
-    function parseFractionOrNumber(token) {
-      if (token.includes("/")) {
-        const [num, den] = token.split("/");
-        const n = parseFloat(num);
-        const d = parseFloat(den);
-        if (!isFinite(n) || !isFinite(d) || d === 0) return NaN;
-        return n / d;
-      } else {
-        const v = parseFloat(token);
-        return isFinite(v) ? v : NaN;
-      }
-    }
-
-    function formatInchesFraction(value) {
-      if (!isFinite(value)) return "–";
-
-      const sign = value < 0 ? "-" : "";
-      value = Math.abs(value);
-
-      const whole = Math.floor(value);
-      const frac  = value - whole;
-
-      const denom = 16;
-      let num = Math.round(frac * denom);
-
-      let w = whole;
-      if (num === denom) {
-        w += 1;
-        num = 0;
-      }
-
-      function gcd(a, b) {
-        while (b !== 0) {
-          const t = b;
-          b = a % b;
-          a = t;
-        }
-        return a;
-      }
-
-      if (num === 0) {
-        return sign + w + '"';
-      } else {
-        const g = gcd(num, denom);
-        const simpleNum = num / g;
-        const simpleDen = denom / g;
-
-        if (w === 0) {
-          return sign + simpleNum + "/" + simpleDen + '"';
-        } else {
-          return sign + w + " " + simpleNum + "/" + simpleDen + '"';
-        }
-      }
-    }
-
-    function calculate(op) {
-      errorMsg.textContent = "";
-
-      const a = parseInches(inchAInput.value);
-      const b = parseInches(inchBInput.value);
-
-      if (isNaN(a) || isNaN(b)) {
-        errorMsg.textContent = "Verifique os valores. Use por ex.: 3 1/4, 1/2 ou 3.75";
-        resDecimal.textContent  = "–";
-        resFraction.textContent = "–";
-        return;
-      }
-
-      let result;
-      switch (op) {
-        case "+": result = a + b; break;
-        case "-": result = a - b; break;
-        case "*": result = a * b; break;
-        case "/":
-          if (b === 0) {
-            errorMsg.textContent = "Não é possível dividir por zero.";
-            resDecimal.textContent  = "–";
-            resFraction.textContent = "–";
-            return;
-          }
-          result = a / b;
-          break;
-        default:
-          return;
-      }
-
-      resDecimal.textContent  = result.toFixed(4) + '"';
-      resFraction.textContent = formatInchesFraction(result);
-    }
-
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const op = btn.getAttribute("data-op");
-        calculate(op);
-      });
-    });
-  </script>
-
-<script>
-  // =========================================================
-  // START BUILDING -> SELETOR DE TRADES
-  // =========================================================
-
-  const startBtn     = document.getElementById('startBuildingBtn');
-  const tradePicker  = document.getElementById('tradePicker');
-  const tradeClose   = tradePicker?.querySelector('.trade-picker-close');
-  const tradeOptions = tradePicker?.querySelectorAll('.trade-option') || [];
-  const shopSection  = document.getElementById('shop');
-
-  function toggleTradePicker(forceOpen) {
-    if (!tradePicker) return;
-    const shouldOpen =
-      typeof forceOpen === 'boolean'
-        ? forceOpen
-        : !tradePicker.classList.contains('open');
-
-    if (shouldOpen) {
-      tradePicker.classList.add('open');
-    } else {
-      tradePicker.classList.remove('open');
-    }
-  }
-
-  // abre/fecha ao clicar no Start Building
-  if (startBtn) {
-    startBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleTradePicker();
-    });
-  }
-
-  // fecha no X
-  if (tradeClose) {
-    tradeClose.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleTradePicker(false);
-    });
-  }
-
-  // clicar em uma trade: fecha e rola até o shop
-  tradeOptions.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-
-      const tradeKey  = btn.dataset.trade || 'default';
-      const tradeName = btn.textContent?.trim() || 'Your trade';
-
-      console.log('Selected trade:', tradeKey, tradeName);
-      // aqui no futuro você pode filtrar produtos por tradeKey
-
-      toggleTradePicker(false);
-
-      if (shopSection) {
-        shopSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
-
-  // clicar fora da janelinha (em qualquer lugar do documento) fecha
-  document.addEventListener('click', (e) => {
-    if (!tradePicker) return;
-    if (!tradePicker.classList.contains('open')) return;
-
-    // se o clique NÃO foi dentro da janelinha nem no botão Start Building, fecha
-    if (!tradePicker.contains(e.target) && e.target !== startBtn) {
-      toggleTradePicker(false);
-    }
-  });
-</script>
-
-<script>
-  // ----- MODAL DE PRODUTO (apenas se existir no HTML) -----
-  (function () {
-    const productModal     = document.getElementById('productModal');
-    const productModalImg  = document.getElementById('productModalImage');
-    const productModalTitle= document.getElementById('productModalTitle');
-    const productModalDesc = document.getElementById('productModalDesc');
-    const closeProductModal= document.getElementById('closeProductModal');
-
-    if (!productModal || !productModalImg || !productModalTitle || !productModalDesc || !closeProductModal) {
-      // ainda não temos o HTML do modal – não faz nada
-      return;
-    }
-
-    document.querySelectorAll('.product-card').forEach(card => {
-      const btn = card.querySelector('.product-cta');
-      if (!btn) return;
-
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const img   = card.querySelector('.product-image');
-        const name  = card.querySelector('.product-name')?.textContent || '';
-        const desc  = card.querySelector('.product-meta')?.textContent || '';
-
-        if (img) {
-          productModalImg.src = img.src;
-          productModalImg.alt = img.alt || name;
-        } else {
-          productModalImg.src = '';
-          productModalImg.alt = '';
-        }
-
-        productModalTitle.textContent = name;
-        productModalDesc.textContent  = desc;
-
-        productModal.classList.add('open');
-      });
-    });
-
-    function closeProdModal() {
-      productModal.classList.remove('open');
-    }
-
-    closeProductModal.addEventListener('click', closeProdModal);
-
-    productModal.addEventListener('click', (e) => {
-      if (e.target === productModal || e.target.classList.contains('product-modal-backdrop')) {
-        closeProdModal();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && productModal.classList.contains('open')) {
-        closeProdModal();
-      }
-    });
-  })();
-</script>
-
-
-
-<script>
-  // --- SHOP TRADE DROPDOWN (título clicável) ---
-  (function () {
-    const tradeMenu   = document.getElementById('shopTradeMenu');
-    const tradeToggle = document.getElementById('shopTradeToggle');
-    const tradeLabel  = document.getElementById('shopTradeLabel');
-    const grids       = document.querySelectorAll('.products-grid');
-
-    if (!tradeMenu || !tradeToggle || grids.length === 0) return;
-
-    function setTrade(key, labelText) {
-      let found = false;
-
-      grids.forEach(grid => {
-        const gridKey = grid.dataset.trade || 'default';
-        const isMatch = gridKey === key;
-        grid.classList.toggle('is-active', isMatch);
-        if (isMatch) found = true;
-      });
-
-      // se ainda não existe grid pra essa trade, volta pro primeiro
-      if (!found && grids[0]) {
-        grids.forEach(grid => grid.classList.remove('is-active'));
-        grids[0].classList.add('is-active');
-      }
-
-      if (labelText) {
-        tradeLabel.textContent = labelText;
-      }
-    }
-
-    // abre/fecha o menu ao clicar no título
-    tradeToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      tradeMenu.classList.toggle('open');
-      const isOpen = tradeMenu.classList.contains('open');
-      tradeMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-    });
-
-    // fecha ao clicar fora
-    document.addEventListener('click', (e) => {
-      if (!tradeMenu.contains(e.target) && e.target !== tradeToggle) {
-        tradeMenu.classList.remove('open');
-        tradeMenu.setAttribute('aria-hidden', 'true');
-      }
-    });
-
-    // clique em uma trade do menu
-    tradeMenu.querySelectorAll('button[data-trade]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const key   = btn.dataset.trade;
-        const label = btn.textContent.trim();
-        setTrade(key, label);
-        tradeMenu.classList.remove('open');
-        tradeMenu.setAttribute('aria-hidden', 'true');
-
-        // rola suave até o topo do shop
-        const shopSection = document.getElementById('shop');
-        if (shopSection) {
-          shopSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-
-    // define um padrão (primeira opção do menu)
-    const firstBtn = tradeMenu.querySelector('button[data-trade]');
-    if (firstBtn) {
-      setTrade(firstBtn.dataset.trade, firstBtn.textContent.trim());
-    }
-  })();
-</script>
-<script>
-  // =========================================
-  // LANDING DO SHOP -> ABRIR E-COMMERCE
-  // =========================================
-  (function () {
-    const landing = document.getElementById('shopLanding');
-    const shopMain = document.getElementById('shopMain');
-
-    if (!landing || !shopMain) return;
-
-    // estado inicial
-    shopMain.classList.remove('is-visible');
-    landing.classList.remove('is-hidden');
-
-    // qualquer card clicado abre o e-commerce
-    landing.querySelectorAll('.shop-landing-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const fit = card.dataset.fit || null;
-
-        landing.classList.add('is-hidden');
-        shopMain.classList.add('is-visible');
-
-        // no futuro: aqui você pode filtrar por "fit" (men/women/members)
-        // e/ou marcar o botão certo na mini-nav.
-        console.log('Landing clicked:', fit);
-      });
-    });
-  })();
-</script>
-
+<script src="js/main.js"></script>
 
 </body>
 </html>

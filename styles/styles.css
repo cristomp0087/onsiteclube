@@ -34,11 +34,7 @@ body {
   line-height: 1.5;
 }
 
-/* trava o scroll até o usuário escolher a trade */
-/* body.locked { */
-  /* overflow: hidden; */
-/* } */
-
+/* img, links, listas */
 
 img {
   max-width: 100%;
@@ -153,12 +149,11 @@ section {
 
 .hero {
   position: relative;
-  min-height: 70vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   color: var(--text-main);
 
-  /* imagem de fundo + gradiente escuro pro texto */
   background-image:
     linear-gradient(
       to right,
@@ -167,7 +162,7 @@ section {
       rgba(0, 0, 0, 0.25) 70%,
       rgba(0, 0, 0, 0) 100%
     ),
-    url("../images/hero.png");   /* <<< CAMINHO DA IMAGEM AQUI */
+    url("../images/hero.png");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -175,7 +170,6 @@ section {
   border-bottom: 1px solid var(--border-subtle);
 }
 
-/* conteúdo interno do hero */
 .hero-inner {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -183,7 +177,7 @@ section {
 }
 
 .hero-copy {
-  max-width: 520px;            /* largura máxima do bloco de texto */
+  max-width: 520px;
 }
 
 .hero-kicker {
@@ -200,7 +194,6 @@ section {
   text-transform: uppercase;
   line-height: 1.1;
   margin-bottom: 1rem;
-  
 }
 
 .hero-subtitle {
@@ -211,7 +204,7 @@ section {
 }
 
 .hero-ctas {
-  position: relative;         /* << ancora a janelinha no bloco de botões */
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -253,7 +246,6 @@ section {
   color: var(--accent);
 }
 
-/* meta-informações do hero */
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
@@ -263,13 +255,14 @@ section {
   letter-spacing: 0.12em;
   color: var(--text-muted);
 }
+
 /* =========================================================
    SELETOR DE TRADES NO HERO ("START BUILDING")
    ========================================================= */
 
 .trade-picker {
   position: absolute;
-  top: 100%;                  /* logo abaixo dos botões */
+  top: 100%;
   left: 0;
   margin-top: 0.75rem;
   width: min(420px, 100%);
@@ -315,11 +308,11 @@ section {
   cursor: pointer;
   line-height: 1;
 }
+
 .trade-picker-close:hover {
   color: var(--accent);
 }
 
-/* grid de opções de trade */
 .trade-picker-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -337,6 +330,7 @@ section {
   color: var(--text-muted);
   cursor: pointer;
 }
+
 .trade-option:hover {
   border-color: var(--accent);
   color: var(--accent);
@@ -349,7 +343,6 @@ section {
   margin-top: 0.1rem;
 }
 
-/* em mobile, fica em uma coluna só pra ficar mais legível */
 @media (max-width: 480px) {
   .trade-picker {
     left: 0;
@@ -361,151 +354,42 @@ section {
   }
 }
 
-
-
 /*----------------------------------------- */
 /*   SEÇÃO SHOP / ECOMMERCE                 */
 /*----------------------------------------- */
 
+/* fundo geral da seção */
 .products {
-  /* continua o fundo escuro no “gutter” da página */
   background: var(--bg-dark-alt);
   padding: 3rem 0;
 }
 
-/* painel branco central (a tal “janela”) */
+/* painel branco central (“janela”) */
 .shop-panel {
-  max-width: var(--max-width);
+  position: relative;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 2.5rem 2rem 3rem;
+  padding: 1.2rem;
   background: #ffffff;
-  color: #111111;
+  color: #111;
   border-radius: 18px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
-/* override da tipografia dentro do painel branco */
-.shop-header .section-title,
-.shop-header .shop-title {
-  color: #111111;
-}
-
-.shop-header .section-subtitle,
-.shop-header .shop-subtitle {
-  color: #555c66;
-}
-
-/* grid de produtos estilo e-commerce */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-.products-grid-row2 {
-  margin-top: 2.25rem;
-  border-top: 1px solid #e2e5ea;
-  padding-top: 1.75rem;
-}
-
-/* cartão de produto */
-.product-card {
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e2e5ea;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-/* wrapper da imagem pra manter proporção */
-.product-image-wrap {
-  aspect-ratio: 4 / 3;
-  background: #f2f3f6;
-  overflow: hidden;
-}
-
-.product-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* corpo do card */
-.product-body {
-  padding: 0.9rem 0.85rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.product-name {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #111111;
-}
-
-.product-meta {
-  font-size: 0.82rem;
-  color: #6b7380;
-}
-
-.product-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 0.5rem;
-}
-
-.product-price {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #111111;
-}
-
-.product-cta {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  border: none;
-  background: #111111;
-  color: #ffffff;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  cursor: pointer;
-}
-
-.product-cta:hover {
-  background: #000000;
-}
-
-/* =========================================
-   LANDING DO SHOP – 3 IMAGENS / 2x1 GRID
-   ========================================= */
-
-.shop-panel {
-  position: relative;
-}
-
-/* estado inicial: mostra landing, esconde shop-main */
+/* LANDING do shop: 3 imagens imersivas */
 .shop-landing {
   display: grid;
-  grid-template-areas:
-    "men women"
-    "members members";
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: minmax(180px, 1.3fr) minmax(140px, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: 1.05fr 1.05fr;
+  grid-template-rows: minmax(45vh, auto) minmax(30vh, auto);
+  gap: 1rem;
+  min-height: 75vh;
 }
 
-/* esconde landing quando clicado */
+/* estado inicial / toggle ecommerce */
 .shop-landing.is-hidden {
   display: none;
 }
 
-/* shop-main começa escondido, aparece depois do clique */
 .shop-main {
   display: none;
 }
@@ -514,203 +398,7 @@ section {
   display: block;
 }
 
-.shop-landing-card {
-  position: relative;
-  border: none;
-  padding: 0;
-  border-radius: 18px;
-  overflow: hidden;
-  cursor: pointer;
-  background: #111;
-  display: block;
-}
-
-/* overlay escuro + leve zoom no hover */
-.shop-landing-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 55%),
-              linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.15));
-  transition: transform 0.35s ease-out, opacity 0.35s ease-out;
-  opacity: 0.95;
-}
-
-.shop-landing-card:hover::before {
-  transform: scale(1.03);
-  opacity: 1;
-}
-
-/* imagem de fundo via background-image nas classes específicas */
-.shop-landing-card {
-  background-size: cover;
-  background-position: center center;
-}
-
-/* Você troca os caminhos das imagens depois */
-.shop-landing-men {
-  grid-area: men;
-  background-image: url("../images/shop-men.png");
-}
-
-.shop-landing-women {
-  grid-area: women;
-  background-image: url("../images/shop-women.png");
-}
-
-.shop-landing-members {
-  grid-area: members;
-  background-image: url("../images/shop-members.png");
-}
-
-/* label no canto inferior esquerdo */
-.shop-landing-label {
-  position: absolute;
-  left: 1.4rem;
-  bottom: 1.2rem;
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-weight: 700;
-  color: #fdfdfd;
-}
-
-/* responsivo da landing */
-@media (max-width: 768px) {
-  .shop-landing {
-    grid-template-areas:
-      "men"
-      "women"
-      "members";
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, minmax(140px, 1fr));
-  }
-}
-
-/* =========================================
-   LANDING PAGE DO SHOP (3 IMAGENS IMERSIVAS)
-   ========================================= */
-
-.shop-landing {
-         /* fundo escuro inteiro */
-  padding: 0;                       /* sem padding extra em volta */
-}
-
-.shop-landing .container {
-  max-width: 1400px;                /* mais largo que o resto do site */
-  margin: 0 auto;
-  padding: 0;                       /* tira padding lateral */
-}
-
-/* GRID: 2 em cima, 1 wide embaixo */
-.landing-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1.1fr;
-  grid-template-rows: minmax(55vh, auto) minmax(35vh, auto);
-  gap: 0.75rem;
-  min-height: 100vh;                /* ocupa praticamente a tela toda */
-}
-
-/* cards clicáveis (cada imagem é o link inteiro) */
-.landing-card {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  border-radius: 18px;
-  cursor: pointer;
-}
-
-/* imagem 100% do card, bem grande */
-.landing-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;                /* preenche o card, corta o excesso */
-  display: block;
-}
-
-/* card de members pega a linha toda embaixo */
-.landing-card.landing-members {
-  grid-column: 1 / -1;
-}
-
-/* título no canto inferior esquerdo */
-.landing-label {
-  position: absolute;
-  left: 1.5rem;
-  bottom: 1.5rem;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: #ffffff;
-}
-
-.landing-label span {
-  display: block;
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  opacity: 0.85;
-}
-
-/* leve escurecida nas bordas pra dar contraste no texto */
-.landing-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.45),
-    transparent 45%
-  );
-  pointer-events: none;
-}
-
-/* hover sutilzinho */
-.landing-card:hover img {
-  transform: scale(1.05);
-  transition: transform 0.35s ease-out;
-}
-
-/* MOBILE: empilha e cada uma vira “tela” quase inteira */
-@media (max-width: 768px) {
-  .landing-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, minmax(60vh, auto));
-    min-height: auto;
-  }
-
-  .landing-card.landing-members {
-    grid-column: auto;
-  }
-}
-/* =========================================
-   SHOP LANDING – 3 IMAGENS IMERSIVAS
-   ========================================= */
-
-/* painel branco mais “justo” nas bordas */
-.products {
-  padding: 3rem 0;
-}
-
-.shop-panel {
-  max-width: 1400px;              /* um pouco mais largo */
-  margin: 0 auto;
-  padding: 1.2rem;                /* antes era 2.5rem+ -> reduz a borda branca */
-  background: #ffffff;
-  color: #111;
-  border-radius: 18px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-}
-
-/* GRID: 2 cards em cima, 1 wide embaixo */
-.shop-landing {
-  display: grid;
-  grid-template-columns: 1.05fr 1.05fr;
-  grid-template-rows: minmax(45vh, auto) minmax(30vh, auto);
-  gap: 1rem;
-  min-height: 75vh;               /* quase a tela toda */
-}
-
-/* card genérico (botão) */
+/* cards grandes de landing */
 .shop-landing-card {
   position: relative;
   display: block;
@@ -726,23 +414,12 @@ section {
   background-repeat: no-repeat;
 }
 
-/* MEN + WOMEN em cima, MEMBERS ocupa linha inteira embaixo */
+/* MEN + WOMEN em cima, MEMBERS ocupa linha toda embaixo */
 .shop-landing-members {
   grid-column: 1 / -1;
 }
 
-/* label no canto inferior esquerdo */
-.shop-landing-label {
-  position: absolute;
-  left: 1.4rem;
-  bottom: 1.2rem;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: #fff;
-}
-
-/* gradiente pra dar contraste no texto */
+/* gradiente de contraste + overlay */
 .shop-landing-card::after {
   content: "";
   position: absolute;
@@ -755,33 +432,54 @@ section {
   pointer-events: none;
 }
 
-/* hover leve */
+/* overlay extra + leve zoom no hover */
+.shop-landing-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 55%),
+    linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.15));
+  transition: transform 0.35s ease-out, opacity 0.35s ease-out;
+  opacity: 0.95;
+}
+
 .shop-landing-card:hover {
   transform: scale(1.02);
   transition: transform 0.3s ease-out;
 }
 
-/* MOBILE – cada card vira quase um “full screen” */
-@media (max-width: 768px) {
-  .shop-panel {
-    padding: 0.8rem;
-    border-radius: 0;             /* opcional: fica bem imersivo no celular */
-  }
-
-  .shop-landing {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, minmax(65vh, auto));
-    min-height: auto;
-  }
-
-  .shop-landing-members {
-    grid-column: auto;
-  }
+.shop-landing-card:hover::before {
+  transform: scale(1.03);
+  opacity: 1;
 }
 
-/* -----------------------------------------*/
-/*   HEADER DO SHOP: TÍTULO = TRADE         */
-/*----------------------------------------- */
+/* caminhos das imagens */
+.shop-landing-men {
+  background-image: url("../images/shop-men.png");
+}
+
+.shop-landing-women {
+  background-image: url("../images/shop-women.png");
+}
+
+.shop-landing-members {
+  background-image: url("../images/shop-members.png");
+}
+
+/* label no canto inferior esquerdo */
+.shop-landing-label {
+  position: absolute;
+  left: 1.4rem;
+  bottom: 1.2rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* HEADER DO SHOP: TÍTULO = TRADE */
 
 .shop-header {
   position: relative;
@@ -893,14 +591,93 @@ section {
   font-weight: 600;
 }
 
-@media (max-width: 768px) {
-  .shop-nav-mini {
-    gap: 0.9rem;
-  }
+/* GRID DE PRODUTOS */
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
-/* -----------------------------------------*/
-/*   MODAL DE PRODUTO                       */
-/*----------------------------------------- */
+
+.products-grid-row2 {
+  margin-top: 2.25rem;
+  border-top: 1px solid #e2e5ea;
+  padding-top: 1.75rem;
+}
+
+/* cartão de produto */
+
+.product-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e5ea;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image-wrap {
+  aspect-ratio: 4 / 3;
+  background: #f2f3f6;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-body {
+  padding: 0.9rem 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.product-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111111;
+}
+
+.product-meta {
+  font-size: 0.82rem;
+  color: #6b7380;
+}
+
+.product-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.product-price {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111111;
+}
+
+.product-cta {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: none;
+  background: #111111;
+  color: #ffffff;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.product-cta:hover {
+  background: #000000;
+}
+
+/* MODAL DE PRODUTO */
 
 .product-modal {
   position: fixed;
@@ -960,8 +737,8 @@ section {
   color: #555c66;
 }
 
+/* RESPONSIVO SHOP */
 
-/* responsivo */
 @media (max-width: 1024px) {
   .products-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -971,6 +748,17 @@ section {
 @media (max-width: 768px) {
   .shop-panel {
     padding: 2rem 1.25rem 2.5rem;
+    border-radius: 0;
+  }
+
+  .shop-landing {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(65vh, auto));
+    min-height: auto;
+  }
+
+  .shop-landing-members {
+    grid-column: auto;
   }
 
   .products-grid {
@@ -984,7 +772,109 @@ section {
   }
 }
 
+/* ------------------------------------*/
+/*           ONSITE TOOLS              */
+/* ------------------------------------*/
 
+.tools {
+  background: #181518;
+  padding: 2.5rem 0;
+}
+
+.tools-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.tools-header {
+  text-align: center;
+}
+
+.tools-title {
+  font-size: 1.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+  margin-bottom: 0.35rem;
+}
+
+.tools-subtitle {
+  font-size: 0.95rem;
+  color: #c1c1c1;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.tool-card {
+  background: #242023;
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid #333;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.tool-card-calculator {
+  border-left: 3px solid #bf8d30;
+}
+
+.tool-card-timer {
+  border-left: 3px solid #ffb347;
+}
+
+.tool-card-checklist {
+  border-left: 3px solid #52c18b;
+}
+
+.tool-name {
+  font-size: 1.2rem;
+  color: #f5f5f5;
+  margin-bottom: 0.5rem;
+}
+
+.tool-description {
+  font-size: 0.95rem;
+  color: #d0d0d0;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.tool-cta {
+  display: inline-block;
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  border: 1px solid #bf8d30;
+  background: transparent;
+  color: #f5f5f5;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.tool-cta:hover {
+  background: #bf8d30;
+  color: #181518;
+  box-shadow: 0 0 15px rgba(191, 141, 48, 0.7);
+  transform: translateY(-1px);
+}
+
+@media (min-width: 768px) {
+  .tools-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .tools-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
 
 /* =========================================================
    THE CLUB – MINI MANIFESTO VISUAL
@@ -998,7 +888,6 @@ section {
   align-items: flex-start;
 }
 
-/* header ocupa a linha inteira */
 .club-header {
   grid-column: 1 / -1;
   margin-bottom: 0.5rem;
@@ -1042,20 +931,18 @@ section {
   padding: 0 1rem 1.1rem;
 }
 
-/* responsivo do The Club */
 @media (max-width: 900px) {
   .club-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }
 
-
 /* =========================================================
-   SEÇÃO: CONTACT / JOIN THE CLUB (ÚLTIMO CONTAINER)
+   SEÇÃO: CONTACT / JOIN THE CLUB
    ========================================================= */
 
 .contact {
-  background: var(--bg-dark);               /* mantém a base escura do site */
+  background: var(--bg-dark);
   border-top: 1px solid var(--border-subtle);
 }
 
@@ -1065,7 +952,6 @@ section {
   padding: 3rem 1.25rem 2.5rem;
 }
 
-/* Card principal (parece produto premium) */
 .contact-card {
   background: var(--bg-dark-alt);
   border-radius: 18px;
@@ -1078,7 +964,6 @@ section {
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
 }
 
-/* Texto lateral (manifesto curto) */
 .contact-title {
   font-size: 1.4rem;
   font-weight: 800;
@@ -1103,7 +988,6 @@ section {
   margin-top: 0.25rem;
 }
 
-/* Formulário */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -1116,7 +1000,6 @@ section {
   gap: 0.85rem 1rem;
 }
 
-/* Deixa o telefone sozinho na linha inteira (mais claro que é opcional) */
 .contact-fields .field:nth-child(3) {
   grid-column: 1 / -1;
 }
@@ -1158,7 +1041,6 @@ section {
   margin-top: 0.4rem;
 }
 
-/* Links pequenos no rodapé da seção */
 .contact-links {
   display: flex;
   flex-wrap: wrap;
@@ -1178,7 +1060,6 @@ section {
   color: var(--accent);
 }
 
-/* Responsivo */
 @media (max-width: 900px) {
   .contact-card {
     grid-template-columns: minmax(0, 1fr);
@@ -1240,16 +1121,10 @@ section {
 }
 
 /* =========================================================
-   RESPONSIVO
+   RESPONSIVO GERAL
    ========================================================= */
 
-/* tablets / telas médias */
 @media (max-width: 900px) {
-  .club-inner,
-  .join-inner {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .hero {
     min-height: 70vh;
     background-position: center center;
@@ -1266,7 +1141,6 @@ section {
   }
 }
 
-/* celulares / telas pequenas */
 @media (max-width: 640px) {
   .header-inner {
     flex-direction: column;
@@ -1283,139 +1157,4 @@ section {
   .products-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-
-  .join-form {
-    flex-direction: column;
-  }
-}
-
-
-/* =========================================================
-   MODAL – INCH CALCULATOR
-   ========================================================= */
-
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  display: none;               /* escondido por padrão */
-  align-items: center;
-  justify-content: center;
-}
-
-.modal.is-open {
-  display: flex;               /* mostra quando tem a classe */
-}
-
-.modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.modal-dialog {
-  position: relative;
-  z-index: 1;
-  background: var(--bg-dark-alt);
-  border-radius: 12px;
-  border: 1px solid var(--border-subtle);
-  padding: 1.5rem 1.75rem;
-  max-width: 420px;
-  width: 92%;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
-}
-
-/* Botão de fechar */
-.modal-close {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.75rem;
-  border: none;
-  background: transparent;
-  color: var(--text-muted);
-  font-size: 1.4rem;
-  cursor: pointer;
-}
-.modal-close:hover {
-  color: var(--accent);
-}
-
-/* Card da calculadora */
-.inch-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.inch-card h1 {
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-.inch-card p {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-.inch-card label {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  margin-top: 0.6rem;
-}
-
-.inch-card input {
-  margin-top: 0.25rem;
-  padding: 0.55rem 0.7rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-subtle);
-  background: #101215;
-  color: var(--text-main);
-  font-size: 0.9rem;
-}
-
-.inch-ops {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.8rem;
-}
-
-.inch-ops button {
-  flex: 1;
-  padding: 0.5rem 0;
-  border-radius: 8px;
-  border: 1px solid var(--border-subtle);
-  background: #191c23;
-  color: var(--text-main);
-  font-size: 1rem;
-  cursor: pointer;
-}
-.inch-ops button:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.error {
-  margin-top: 0.6rem;
-  font-size: 0.8rem;
-  color: var(--error);
-  min-height: 1em;
-}
-
-.result {
-  margin-top: 0.8rem;
-  padding-top: 0.7rem;
-  border-top: 1px solid var(--border-subtle);
-  font-size: 0.85rem;
-}
-
-.result .row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.3rem;
-}
-
-.label-small {
-  color: var(--text-muted);
 }
