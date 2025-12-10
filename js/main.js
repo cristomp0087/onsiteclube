@@ -264,3 +264,39 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+// =======================================================
+//             THE CLUB – BE ONSITE MAP
+//  ======================================================= 
+
+// --- Hover vídeo nos cards do Club ---
+document.querySelectorAll('.club-card').forEach(card => {
+  const video = card.querySelector('.club-image-video');
+  if (!video) return;
+
+  card.addEventListener('mouseenter', () => {
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  });
+
+  card.addEventListener('mouseleave', () => {
+    video.pause();
+  });
+});
+
+// -----------------------------------------
+// CLUB CTAS – SCROLL SUAVE PARA AS SEÇÕES
+// -----------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.club-cta[data-target]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      if (!targetId) return;
+
+      const section = document.getElementById(targetId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+});

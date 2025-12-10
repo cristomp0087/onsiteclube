@@ -777,11 +777,14 @@ section {
 /* ------------------------------------*/
 
 .tools {
-  background: #181518;
-  padding: 2.5rem 0;
+  background: #181518;          /* volta pro escuro elegante */
+  padding: 3rem 0 3.5rem;       /* respiro vertical */
 }
 
 .tools-inner {
+  max-width: var(--max-width);  /* MESMA largura do resto do site */
+  margin: 0 auto;
+  padding: 0 1.25rem;           /* igual ao .container padrão */
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
@@ -808,44 +811,60 @@ section {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-}
-
-.tool-card {
+}.tool-card {
   background: #242023;
-  border-radius: 10px;
-  padding: 1.5rem 1.75rem;
+  border-radius: 14px;
+  padding: 1.75rem 1.75rem 1.6rem;
   border: 1px solid #333;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
-.tool-card-calculator {
-  border-left: 3px solid #bf8d30;
+/* bolacha dourada do ícone */
+.tool-icon-wrap {
+  width: 3.2rem;
+  height: 3.2rem;
+  margin: 0 auto 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(247, 181, 0, 0.75);
+  background:
+    radial-gradient(circle at 30% 0%, rgba(255,255,255,0.12), transparent 55%),
+    radial-gradient(circle at 80% 130%, rgba(255,196,60,0.5), transparent 60%),
+    #0b0b0c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 18px rgba(247, 181, 0, 0.22);
 }
 
-.tool-card-timer {
-  border-left: 3px solid #ffb347;
+.tool-icon {
+  width: 60%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.7));
 }
 
-.tool-card-checklist {
-  border-left: 3px solid #52c18b;
-}
-
+/* título e texto ficam abaixo do ícone */
 .tool-name {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   color: #f5f5f5;
-  margin-bottom: 0.5rem;
+  text-align: center;
+  margin-bottom: 0.6rem;
 }
 
 .tool-description {
   font-size: 0.95rem;
   color: #d0d0d0;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   line-height: 1.5;
+  text-align: center;
 }
 
 .tool-cta {
-  display: inline-block;
-  padding: 0.55rem 1.3rem;
+  align-self: center;
+  padding: 0.6rem 1.6rem;
   border-radius: 999px;
   border: 1px solid #bf8d30;
   background: transparent;
@@ -854,15 +873,91 @@ section {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .tool-cta:hover {
   background: #bf8d30;
   color: #181518;
-  box-shadow: 0 0 15px rgba(191, 141, 48, 0.7);
+  border-color: #f7b500;
+  box-shadow: 0 0 16px rgba(191, 141, 48, 0.75);
   transform: translateY(-1px);
 }
+/* ÍCONE DOURADO NOS CARDS DE TOOLS */
+.tool-icon {
+  width: 88px;             /* tamanho do círculo */
+  height: 88px;
+  border-radius: 999px;
+  margin: 0 auto 1.25rem;  /* centraliza e afasta do título */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* glow elegante */
+  background: radial-gradient(circle at 50% 40%, #f7b500, #805200 65%, #000 100%);
+  box-shadow: 0 0 24px rgba(247, 181, 0, 0.55);
+}
+
+/* tamanho da arte dentro do círculo */
+.tool-icon img {
+  width: 64%;   /* aumenta/diminui se quiser mais ou menos “cheio” */
+  height: auto;
+  display: block;
+}
+/* TOOL CARDS – MAIS RESPIRO EM CIMA PRO ÍCONE */
+.tool-card {
+  padding: 2.4rem 1.75rem 1.9rem;   /* mais padding-top */
+  text-align: center;
+}
+
+/* ÍCONE DOURADO – MAIOR E CENTRALIZADO */
+.tool-icon {
+  width: 108px;
+  height: 108px;
+  border-radius: 999px;
+  margin: 0 auto 1.5rem;           /* cola no topo, afasta do título */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: radial-gradient(circle at 50% 40%, #f7b500, #805200 65%, #000 100%);
+  box-shadow: 0 0 26px rgba(247, 181, 0, 0.7);
+}
+
+/* garante que a arte oval não “estoure” o círculo */
+.tool-icon img {
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .tool-card {
+    padding: 2rem 1.5rem 1.7rem;
+  }
+
+  .tool-icon {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* em telas menores, dá uma leve reduzida pra não ficar desproporcional */
+@media (max-width: 640px) {
+  .tool-icon {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 1rem;
+  }
+}
+
 
 @media (min-width: 768px) {
   .tools-grid {
@@ -875,6 +970,7 @@ section {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
 
 /* =========================================================
    THE CLUB – MINI MANIFESTO VISUAL
@@ -916,6 +1012,31 @@ section {
   display: block;
   opacity: 0.94;
 }
+.club-card-image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #15171c;
+  overflow: hidden;
+}
+
+/* mantém a aparência atual */
+.club-image-poster,
+.club-image-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* vídeo começa invisível por cima da imagem */
+.club-image-video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+
 
 .club-card-heading {
   font-size: 0.95rem;
@@ -931,12 +1052,90 @@ section {
   padding: 0 1rem 1.1rem;
 }
 
+.club-cta {
+  display: inline-block;
+  margin-top: 0.9rem;
+  padding: 0.55rem 1.3rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition:
+    background 0.18s ease-out,
+    color 0.18s ease-out,
+    box-shadow 0.18s ease-out,
+    transform 0.18s ease-out;
+}
+
+.club-cta:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 18px rgba(247, 181, 0, 0.55);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   THE CLUB – ALINHAR CARDS E CTAs
+   ========================================================= */
+
+/* já existe, mas reforça que os cards esticam igual */
+.club-grid {
+  padding: 3rem 0 3.25rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: stretch;  /* garante mesma altura de linha */
+}
+
+/* cada card vira uma coluna flex */
+.club-card {
+  background: var(--bg-dark-alt);
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* padroniza o padding interno (título + texto) */
+.club-card-heading,
+.club-card-text {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.club-card-heading {
+  padding-top: 0.9rem;
+  padding-bottom: 0.25rem;
+}
+
+.club-card-text {
+  padding-bottom: 0.9rem;
+}
+
+/* botão sempre grudado no fundo do card */
+.club-cta {
+  display: block;
+  text-align: center;
+  margin: auto 1rem 1.1rem;  /* top:auto empurra pra baixo */
+}
+
 @media (max-width: 900px) {
   .club-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }
-
+/* em desktops, ao passar o mouse, mostra o vídeo */
+@media (hover: hover) and (pointer: fine) {
+  .club-card:hover .club-image-video {
+    opacity: 1;
+  }
+}
 /* =========================================================
    SEÇÃO: CONTACT / JOIN THE CLUB
    ========================================================= */
@@ -944,25 +1143,33 @@ section {
 .contact {
   background: var(--bg-dark);
   border-top: 1px solid var(--border-subtle);
+  padding: 3rem 0 2.5rem;
 }
 
 .contact-inner {
-  max-width: var(--max-width);
+  max-width: var(--max-width);   /* usa exatamente o mesmo limite global */
   margin: 0 auto;
-  padding: 3rem 1.25rem 2.5rem;
+  padding: 0 1.25rem;            /* mesmo padding lateral do site */
 }
 
+/* só pra não parecer que o card “cola” na borda do container */
+.contact-card {
+  margin-top: 1.5rem;
+}
+
+/* Card não precisa ocupar 100% do viewport */
 .contact-card {
   background: var(--bg-dark-alt);
   border-radius: 18px;
   border: 1px solid var(--border-subtle);
-  padding: 2rem 2rem 2.25rem;
+  padding: 1.75rem 1.75rem 2rem;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
-  gap: 2.25rem;
-  align-items: flex-start;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
+  gap: 1.75rem;
+  align-items: center;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
 }
+
 
 .contact-title {
   font-size: 1.4rem;
@@ -1060,6 +1267,55 @@ section {
   color: var(--accent);
 }
 
+/* qualquer field que precise ocupar a linha toda */
+.field-full {
+  grid-column: 1 / -1;
+}
+.contact-visual {
+  margin-top: 1.25rem;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+
+.contact-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+/* inputs e selects no form */
+.field select,
+.field textarea {
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: #101215;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+
+/* Textarea no mesmo estilo dos inputs */
+.field textarea {
+  padding: 0.7rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: #101215;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.field textarea::placeholder {
+  color: #626773;
+}
+
+/* Em telas pequenas o formulário já estava empilhando, continua ok */
+
+
 @media (max-width: 900px) {
   .contact-card {
     grid-template-columns: minmax(0, 1fr);
@@ -1082,9 +1338,8 @@ section {
     padding-bottom: 2.25rem;
   }
 
-  .contact-card {
-    border-radius: 14px;
-  }
+
+
 
   .contact-links {
     justify-content: flex-start;
