@@ -118,214 +118,251 @@
        ======================================================= -->
 <section id="shop" class="section products">
   <div class="shop-panel">
-        <!-- HEADER DO ECOMMERCE: NOME DA TRADE + CTA -->
-    <header class="shop-header">
-      <button class="shop-trade-toggle" type="button" id="shopTradeToggle">
-        <span id="shopTradeLabel">Framing · Carpentry</span>
-        <span class="shop-trade-arrow">▾</span>
-      </button>
 
-      <p class="shop-subtitle">
-        Gear tuned for your trade. Switch trades to see different drops.
-      </p>
-
-      <!-- MENU DE TRADES QUE ABRE AO CLICAR NO TÍTULO -->
-      <div class="shop-trade-menu" id="shopTradeMenu" aria-hidden="true">
-        <button type="button" data-trade="framing">Framing · Carpentry</button>
-        <button type="button" data-trade="concrete">Concrete · Foundations</button>
-        <button type="button" data-trade="electrical">Electrical</button>
-        <button type="button" data-trade="plumbing">Plumbing · HVAC</button>
-        <button type="button" data-trade="drywall">Drywall · Finish</button>
-      </div>
-    </header>
-
-    <!-- MINI NAV: TRADES / MEN / WOMEN / MEMBERS -->
-    <nav class="shop-nav-mini">
-      <button class="shop-nav-mini-item" type="button" data-mini="trades">
-        Trades
-      </button>
-      <button class="shop-nav-mini-item" type="button" data-mini="men">
-        Men
-      </button>
-      <button class="shop-nav-mini-item" type="button" data-mini="women">
-        Women
-      </button>
+    <!-- ==============================
+         LANDING DO SHOP (3 IMAGENS)
+         ============================== -->
+    <div class="shop-landing" id="shopLanding">
+      <!-- Card 1 – Men -->
       <button
-        class="shop-nav-mini-item shop-nav-mini-item-members"
+        class="shop-landing-card shop-landing-men"
         type="button"
-        onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})"
+        data-fit="men"
       >
-        Members
+        <span class="shop-landing-label">
+          Men
+        </span>
       </button>
-    </nav>
 
+      <!-- Card 2 – Women -->
+      <button
+        class="shop-landing-card shop-landing-women"
+        type="button"
+        data-fit="women"
+      >
+        <span class="shop-landing-label">
+          Women
+        </span>
+      </button>
 
-    
-
-
-
-
-    <!-- ROW 1 – Open gear / geral -->
-    <div class="products-grid">
-      <!-- Product 1 -->
-      <article class="product-card">
-        <div class="product-image-wrap">
-          <img src="images/product-tee-placeholder.jpg"
-               alt="“Eat. Sheet. Repeat.” Tee"
-               class="product-image">
-        </div>
-        <div class="product-body">
-          <div class="product-name">“Eat. Sheet. Repeat.” Tee</div>
-          <div class="product-meta">For the drywall heroes.</div>
-          <div class="product-bottom">
-            <span class="product-price">$XX.XX</span>
-            <button class="product-cta" data-product="tee-1">
-              View details
-            </button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Product 2 -->
-      <article class="product-card">
-        <div class="product-image-wrap">
-          <img src="images/product-building-canada.jpg"
-               alt="“Building Canada” Tee"
-               class="product-image">
-        </div>
-        <div class="product-body">
-          <div class="product-name">“Building Canada” Tee</div>
-          <div class="product-meta">One job site at a time.</div>
-          <div class="product-bottom">
-            <span class="product-price">$XX.XX</span>
-            <button class="product-cta" data-product="tee-2">
-              View details
-            </button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Product 3 -->
-      <article class="product-card">
-        <div class="product-image-wrap">
-          <img src="images/product-hoodie.jpg"
-               alt="OnSite Club Hoodie"
-               class="product-image">
-        </div>
-        <div class="product-body">
-          <div class="product-name">OnSite Club Hoodie</div>
-          <div class="product-meta">Cold mornings, long days.</div>
-          <div class="product-bottom">
-            <span class="product-price">$XX.XX</span>
-            <button class="product-cta" data-product="hoodie-1">
-              View details
-            </button>
-          </div>
-        </div>
-      </article>
-
-      <!-- Product 4 -->
-      <article class="product-card">
-        <div class="product-image-wrap">
-          <img src="images/product-cap.jpg"
-               alt="Jobsite Cap"
-               class="product-image">
-        </div>
-        <div class="product-body">
-          <div class="product-name">Jobsite Cap</div>
-          <div class="product-meta">For helmet hair days.</div>
-          <div class="product-bottom">
-            <span class="product-price">$XX.XX</span>
-            <button class="product-cta" data-product="cap-1">
-              View details
-            </button>
-          </div>
-        </div>
-      </article>
+      <!-- Card 3 – Members -->
+      <button
+        class="shop-landing-card shop-landing-members"
+        type="button"
+        data-fit="members"
+      >
+        <span class="shop-landing-label">
+          Members
+        </span>
+      </button>
     </div>
 
-    <!-- ROW 2 – você pode usar depois como “Members / Level gated” -->
-    <div class="products-grid products-grid-row2">
-      <!-- Product 5 -->
-      <article class="product-card">
-        <div class="product-image-wrap">
-          <img src="images/product-tee-placeholder.jpg"
-               alt="Crew Tee"
-               class="product-image">
-        </div>
-        <div class="product-body">
-          <div class="product-name">Crew Tee</div>
-          <div class="product-meta">OnSite logo, everyday wear.</div>
-          <div class="product-bottom">
-            <span class="product-price">$XX.XX</span>
-            <button class="product-cta" data-product="tee-crew">
-              View details
-            </button>
-          </div>
-        </div>
-      </article>
+    <!-- ==============================
+         CONTEÚDO REAL DO ECOMMERCE
+         (FICA ESCONDIDO ATÉ CLICAR)
+         ============================== -->
+    <div class="shop-main" id="shopMain">
+      <!-- HEADER DO ECOMMERCE: NOME DA TRADE + CTA -->
+      <header class="shop-header">
+        <button class="shop-trade-toggle" type="button" id="shopTradeToggle">
+          <span id="shopTradeLabel">Framing · Carpentry</span>
+          <span class="shop-trade-arrow">▾</span>
+        </button>
 
-      <!-- Product 6 -->
-      <article class="product-card">
-        <div class="product-image-wrap">
-          <img src="images/product-hoodie.jpg"
-               alt="Night Shift Hoodie"
-               class="product-image">
-        </div>
-        <div class="product-body">
-          <div class="product-name">Night Shift Hoodie</div>
-          <div class="product-meta">For late pours & winter shifts.</div>
-          <div class="product-bottom">
-            <span class="product-price">$XX.XX</span>
-            <button class="product-cta" data-product="hoodie-night">
-              View details
-            </button>
-          </div>
-        </div>
-      </article>
+        <p class="shop-subtitle">
+          Gear tuned for your trade. Switch trades to see different drops.
+        </p>
 
-      <!-- Product 7 -->
-      <article class="product-card">
-        <div class="product-image-wrap">
-          <img src="images/product-cap.jpg"
-               alt="Level Badge Cap"
-               class="product-image">
+        <!-- MENU DE TRADES QUE ABRE AO CLICAR NO TÍTULO -->
+        <div class="shop-trade-menu" id="shopTradeMenu" aria-hidden="true">
+          <button type="button" data-trade="framing">Framing · Carpentry</button>
+          <button type="button" data-trade="concrete">Concrete · Foundations</button>
+          <button type="button" data-trade="electrical">Electrical</button>
+          <button type="button" data-trade="plumbing">Plumbing · HVAC</button>
+          <button type="button" data-trade="drywall">Drywall · Finish</button>
         </div>
-        <div class="product-body">
-          <div class="product-name">Level Badge Cap</div>
-          <div class="product-meta">Swap badges as you level up.</div>
-          <div class="product-bottom">
-            <span class="product-price">$XX.XX</span>
-            <button class="product-cta" data-product="cap-level">
-              View details
-            </button>
-          </div>
-        </div>
-      </article>
+      </header>
 
-      <!-- Product 8 -->
-      <article class="product-card">
-        <div class="product-image-wrap">
-          <img src="images/product-tee-placeholder.jpg"
-               alt="OnSite Long Sleeve"
-               class="product-image">
-        </div>
-        <div class="product-body">
-          <div class="product-name">OnSite Long Sleeve</div>
-          <div class="product-meta">Layer for cold scaffolds.</div>
-          <div class="product-bottom">
-            <span class="product-price">$XX.XX</span>
-            <button class="product-cta" data-product="longsleeve-1">
-              View details
-            </button>
+      <!-- MINI NAV: TRADES / MEN / WOMEN / MEMBERS -->
+      <nav class="shop-nav-mini">
+        <button class="shop-nav-mini-item" type="button" data-mini="trades">
+          Trades
+        </button>
+        <button class="shop-nav-mini-item" type="button" data-mini="men">
+          Men
+        </button>
+        <button class="shop-nav-mini-item" type="button" data-mini="women">
+          Women
+        </button>
+        <button
+          class="shop-nav-mini-item shop-nav-mini-item-members"
+          type="button"
+          onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})"
+        >
+          Members
+        </button>
+      </nav>
+
+      <!-- ROW 1 – Open gear / geral -->
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img src="images/product-tee-placeholder.jpg"
+                 alt="“Eat. Sheet. Repeat.” Tee"
+                 class="product-image">
           </div>
-        </div>
-      </article>
-    </div>
+          <div class="product-body">
+            <div class="product-name">“Eat. Sheet. Repeat.” Tee</div>
+            <div class="product-meta">For the drywall heroes.</div>
+            <div class="product-bottom">
+              <span class="product-price">$XX.XX</span>
+              <button class="product-cta" data-product="tee-1">
+                View details
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img src="images/product-building-canada.jpg"
+                 alt="“Building Canada” Tee"
+                 class="product-image">
+          </div>
+          <div class="product-body">
+            <div class="product-name">“Building Canada” Tee</div>
+            <div class="product-meta">One job site at a time.</div>
+            <div class="product-bottom">
+              <span class="product-price">$XX.XX</span>
+              <button class="product-cta" data-product="tee-2">
+                View details
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img src="images/product-hoodie.jpg"
+                 alt="OnSite Club Hoodie"
+                 class="product-image">
+          </div>
+          <div class="product-body">
+            <div class="product-name">OnSite Club Hoodie</div>
+            <div class="product-meta">Cold mornings, long days.</div>
+            <div class="product-bottom">
+              <span class="product-price">$XX.XX</span>
+              <button class="product-cta" data-product="hoodie-1">
+                View details
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 4 -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img src="images/product-cap.jpg"
+                 alt="Jobsite Cap"
+                 class="product-image">
+          </div>
+          <div class="product-body">
+            <div class="product-name">Jobsite Cap</div>
+            <div class="product-meta">For helmet hair days.</div>
+            <div class="product-bottom">
+              <span class="product-price">$XX.XX</span>
+              <button class="product-cta" data-product="cap-1">
+                View details
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ROW 2 – depois você pode usar como “Members / Level gated” -->
+      <div class="products-grid products-grid-row2">
+        <!-- Product 5 -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img src="images/product-tee-placeholder.jpg"
+                 alt="Crew Tee"
+                 class="product-image">
+          </div>
+          <div class="product-body">
+            <div class="product-name">Crew Tee</div>
+            <div class="product-meta">OnSite logo, everyday wear.</div>
+            <div class="product-bottom">
+              <span class="product-price">$XX.XX</span>
+              <button class="product-cta" data-product="tee-crew">
+                View details
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 6 -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img src="images/product-hoodie.jpg"
+                 alt="Night Shift Hoodie"
+                 class="product-image">
+          </div>
+          <div class="product-body">
+            <div class="product-name">Night Shift Hoodie</div>
+            <div class="product-meta">For late pours & winter shifts.</div>
+            <div class="product-bottom">
+              <span class="product-price">$XX.XX</span>
+              <button class="product-cta" data-product="hoodie-night">
+                View details
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 7 -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img src="images/product-cap.jpg"
+                 alt="Level Badge Cap"
+                 class="product-image">
+          </div>
+          <div class="product-body">
+            <div class="product-name">Level Badge Cap</div>
+            <div class="product-meta">Swap badges as you level up.</div>
+            <div class="product-bottom">
+              <span class="product-price">$XX.XX</span>
+              <button class="product-cta" data-product="cap-level">
+                View details
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Product 8 -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <img src="images/product-tee-placeholder.jpg"
+                 alt="OnSite Long Sleeve"
+                 class="product-image">
+          </div>
+          <div class="product-body">
+            <div class="product-name">OnSite Long Sleeve</div>
+            <div class="product-meta">Layer for cold scaffolds.</div>
+            <div class="product-bottom">
+              <span class="product-price">$XX.XX</span>
+              <button class="product-cta" data-product="longsleeve-1">
+                View details
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div><!-- /.shop-main -->
   </div>
 </section>
-
-
    <!-- =======================================================
      THE CLUB – MINI MANIFESTO VISUAL (ORGULHO / PERTENCIMENTO)
      ======================================================= -->
@@ -873,6 +910,35 @@
     if (firstBtn) {
       setTrade(firstBtn.dataset.trade, firstBtn.textContent.trim());
     }
+  })();
+</script>
+<script>
+  // =========================================
+  // LANDING DO SHOP -> ABRIR E-COMMERCE
+  // =========================================
+  (function () {
+    const landing = document.getElementById('shopLanding');
+    const shopMain = document.getElementById('shopMain');
+
+    if (!landing || !shopMain) return;
+
+    // estado inicial
+    shopMain.classList.remove('is-visible');
+    landing.classList.remove('is-hidden');
+
+    // qualquer card clicado abre o e-commerce
+    landing.querySelectorAll('.shop-landing-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const fit = card.dataset.fit || null;
+
+        landing.classList.add('is-hidden');
+        shopMain.classList.add('is-visible');
+
+        // no futuro: aqui você pode filtrar por "fit" (men/women/members)
+        // e/ou marcar o botão certo na mini-nav.
+        console.log('Landing clicked:', fit);
+      });
+    });
   })();
 </script>
 

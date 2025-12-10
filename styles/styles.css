@@ -480,6 +480,305 @@ section {
 .product-cta:hover {
   background: #000000;
 }
+
+/* =========================================
+   LANDING DO SHOP – 3 IMAGENS / 2x1 GRID
+   ========================================= */
+
+.shop-panel {
+  position: relative;
+}
+
+/* estado inicial: mostra landing, esconde shop-main */
+.shop-landing {
+  display: grid;
+  grid-template-areas:
+    "men women"
+    "members members";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: minmax(180px, 1.3fr) minmax(140px, 1fr);
+  gap: 1.25rem;
+}
+
+/* esconde landing quando clicado */
+.shop-landing.is-hidden {
+  display: none;
+}
+
+/* shop-main começa escondido, aparece depois do clique */
+.shop-main {
+  display: none;
+}
+
+.shop-main.is-visible {
+  display: block;
+}
+
+.shop-landing-card {
+  position: relative;
+  border: none;
+  padding: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #111;
+  display: block;
+}
+
+/* overlay escuro + leve zoom no hover */
+.shop-landing-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 55%),
+              linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.15));
+  transition: transform 0.35s ease-out, opacity 0.35s ease-out;
+  opacity: 0.95;
+}
+
+.shop-landing-card:hover::before {
+  transform: scale(1.03);
+  opacity: 1;
+}
+
+/* imagem de fundo via background-image nas classes específicas */
+.shop-landing-card {
+  background-size: cover;
+  background-position: center center;
+}
+
+/* Você troca os caminhos das imagens depois */
+.shop-landing-men {
+  grid-area: men;
+  background-image: url("../images/shop-men.png");
+}
+
+.shop-landing-women {
+  grid-area: women;
+  background-image: url("../images/shop-women.png");
+}
+
+.shop-landing-members {
+  grid-area: members;
+  background-image: url("../images/shop-members.png");
+}
+
+/* label no canto inferior esquerdo */
+.shop-landing-label {
+  position: absolute;
+  left: 1.4rem;
+  bottom: 1.2rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: #fdfdfd;
+}
+
+/* responsivo da landing */
+@media (max-width: 768px) {
+  .shop-landing {
+    grid-template-areas:
+      "men"
+      "women"
+      "members";
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(140px, 1fr));
+  }
+}
+
+/* =========================================
+   LANDING PAGE DO SHOP (3 IMAGENS IMERSIVAS)
+   ========================================= */
+
+.shop-landing {
+         /* fundo escuro inteiro */
+  padding: 0;                       /* sem padding extra em volta */
+}
+
+.shop-landing .container {
+  max-width: 1400px;                /* mais largo que o resto do site */
+  margin: 0 auto;
+  padding: 0;                       /* tira padding lateral */
+}
+
+/* GRID: 2 em cima, 1 wide embaixo */
+.landing-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.1fr;
+  grid-template-rows: minmax(55vh, auto) minmax(35vh, auto);
+  gap: 0.75rem;
+  min-height: 100vh;                /* ocupa praticamente a tela toda */
+}
+
+/* cards clicáveis (cada imagem é o link inteiro) */
+.landing-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 18px;
+  cursor: pointer;
+}
+
+/* imagem 100% do card, bem grande */
+.landing-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                /* preenche o card, corta o excesso */
+  display: block;
+}
+
+/* card de members pega a linha toda embaixo */
+.landing-card.landing-members {
+  grid-column: 1 / -1;
+}
+
+/* título no canto inferior esquerdo */
+.landing-label {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #ffffff;
+}
+
+.landing-label span {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  opacity: 0.85;
+}
+
+/* leve escurecida nas bordas pra dar contraste no texto */
+.landing-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.45),
+    transparent 45%
+  );
+  pointer-events: none;
+}
+
+/* hover sutilzinho */
+.landing-card:hover img {
+  transform: scale(1.05);
+  transition: transform 0.35s ease-out;
+}
+
+/* MOBILE: empilha e cada uma vira “tela” quase inteira */
+@media (max-width: 768px) {
+  .landing-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(60vh, auto));
+    min-height: auto;
+  }
+
+  .landing-card.landing-members {
+    grid-column: auto;
+  }
+}
+/* =========================================
+   SHOP LANDING – 3 IMAGENS IMERSIVAS
+   ========================================= */
+
+/* painel branco mais “justo” nas bordas */
+.products {
+  padding: 3rem 0;
+}
+
+.shop-panel {
+  max-width: 1400px;              /* um pouco mais largo */
+  margin: 0 auto;
+  padding: 1.2rem;                /* antes era 2.5rem+ -> reduz a borda branca */
+  background: #ffffff;
+  color: #111;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* GRID: 2 cards em cima, 1 wide embaixo */
+.shop-landing {
+  display: grid;
+  grid-template-columns: 1.05fr 1.05fr;
+  grid-template-rows: minmax(45vh, auto) minmax(30vh, auto);
+  gap: 1rem;
+  min-height: 75vh;               /* quase a tela toda */
+}
+
+/* card genérico (botão) */
+.shop-landing-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* MEN + WOMEN em cima, MEMBERS ocupa linha inteira embaixo */
+.shop-landing-members {
+  grid-column: 1 / -1;
+}
+
+/* label no canto inferior esquerdo */
+.shop-landing-label {
+  position: absolute;
+  left: 1.4rem;
+  bottom: 1.2rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #fff;
+}
+
+/* gradiente pra dar contraste no texto */
+.shop-landing-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.4),
+    transparent 45%
+  );
+  pointer-events: none;
+}
+
+/* hover leve */
+.shop-landing-card:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease-out;
+}
+
+/* MOBILE – cada card vira quase um “full screen” */
+@media (max-width: 768px) {
+  .shop-panel {
+    padding: 0.8rem;
+    border-radius: 0;             /* opcional: fica bem imersivo no celular */
+  }
+
+  .shop-landing {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(65vh, auto));
+    min-height: auto;
+  }
+
+  .shop-landing-members {
+    grid-column: auto;
+  }
+}
+
 /* -----------------------------------------*/
 /*   HEADER DO SHOP: TÍTULO = TRADE         */
 /*----------------------------------------- */
