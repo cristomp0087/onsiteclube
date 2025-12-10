@@ -1,0 +1,1122 @@
+/* =========================================================
+   VARIÁVEIS E RESET BÁSICO
+   ========================================================= */
+
+:root {
+  --bg-dark: #101215;
+  --bg-dark-alt: #181b20;
+  --bg-light: #f5f5f5;
+  --text-main: #fdfdfd;
+  --text-muted: #c3c7ce;
+  --accent: #f7b500;      /* amarelo obra */
+  --accent-dark: #d49700;
+  --border-subtle: #252932;
+  --card-bg: #171a1f;
+  --error: #ff5555;
+  --max-width: 1200px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* trava o scroll até o usuário escolher a trade */
+/* body.locked { */
+  /* overflow: hidden; */
+/* } */
+
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* container padrão para centralizar conteúdo */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* toda seção compensa a altura do header fixo ao rolar */
+section {
+  scroll-margin-top: 4rem;
+}
+
+/* =========================================================
+   HEADER / NAVEGAÇÃO
+   ========================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(16, 18, 21, 0.96);
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(10px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+}
+
+.logo {
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.main-nav a {
+  color: var(--text-muted);
+  position: relative;
+  padding-bottom: 0.15rem;
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+  color: var(--text-main);
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.2rem;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.2s ease-out;
+}
+
+.main-nav a:hover::after,
+.main-nav a:focus::after {
+  width: 100%;
+}
+
+.nav-cta {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.nav-cta:hover {
+  background: var(--accent);
+  color: #000;
+}
+
+/* =========================================================
+   HERO – IMAGEM FULL-WIDTH DE FUNDO
+   ========================================================= */
+
+.hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  color: var(--text-main);
+
+  /* imagem de fundo + gradiente escuro pro texto */
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.7) 35%,
+      rgba(0, 0, 0, 0.25) 70%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    url("../images/hero.png");   /* <<< CAMINHO DA IMAGEM AQUI */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* conteúdo interno do hero */
+.hero-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3rem 1.25rem 2.5rem;
+}
+
+.hero-copy {
+  max-width: 520px;            /* largura máxima do bloco de texto */
+}
+
+.hero-kicker {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 3.3vw, 3rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  
+}
+
+.hero-subtitle {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  max-width: 30rem;
+  margin-bottom: 1.75rem;
+}
+
+.hero-ctas {
+  position: relative;         /* << ancora a janelinha no bloco de botões */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.btn-primary {
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark);
+}
+
+.btn-outline {
+  padding: 0.82rem 1.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* meta-informações do hero */
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+/* =========================================================
+   SELETOR DE TRADES NO HERO ("START BUILDING")
+   ========================================================= */
+
+.trade-picker {
+  position: absolute;
+  top: 100%;                  /* logo abaixo dos botões */
+  left: 0;
+  margin-top: 0.75rem;
+  width: min(420px, 100%);
+  padding: 1rem 1.1rem 1.1rem;
+
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.8);
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+  z-index: 20;
+}
+
+.trade-picker.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.trade-picker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.trade-picker-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+}
+
+.trade-picker-close {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.trade-picker-close:hover {
+  color: var(--accent);
+}
+
+/* grid de opções de trade */
+.trade-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.trade-option {
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 21, 24, 0.95);
+  border-radius: 10px;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.trade-option:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(20, 21, 24, 1);
+}
+
+.trade-picker-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+
+/* em mobile, fica em uma coluna só pra ficar mais legível */
+@media (max-width: 480px) {
+  .trade-picker {
+    left: 0;
+    right: 0;
+    width: auto;
+  }
+  .trade-picker-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+
+/*----------------------------------------- */
+/*   SEÇÃO SHOP / ECOMMERCE                 */
+/*----------------------------------------- */
+
+.products {
+  /* continua o fundo escuro no “gutter” da página */
+  background: var(--bg-dark-alt);
+  padding: 3rem 0;
+}
+
+/* painel branco central (a tal “janela”) */
+.shop-panel {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2.5rem 2rem 3rem;
+  background: #ffffff;
+  color: #111111;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* override da tipografia dentro do painel branco */
+.shop-header .section-title,
+.shop-header .shop-title {
+  color: #111111;
+}
+
+.shop-header .section-subtitle,
+.shop-header .shop-subtitle {
+  color: #555c66;
+}
+
+/* grid de produtos estilo e-commerce */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.products-grid-row2 {
+  margin-top: 2.25rem;
+  border-top: 1px solid #e2e5ea;
+  padding-top: 1.75rem;
+}
+
+/* cartão de produto */
+.product-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e5ea;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* wrapper da imagem pra manter proporção */
+.product-image-wrap {
+  aspect-ratio: 4 / 3;
+  background: #f2f3f6;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* corpo do card */
+.product-body {
+  padding: 0.9rem 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.product-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111111;
+}
+
+.product-meta {
+  font-size: 0.82rem;
+  color: #6b7380;
+}
+
+.product-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.product-price {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111111;
+}
+
+.product-cta {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: none;
+  background: #111111;
+  color: #ffffff;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.product-cta:hover {
+  background: #000000;
+}
+/* -----------------------------------------*/
+/*   HEADER DO SHOP: TÍTULO = TRADE         */
+/*----------------------------------------- */
+
+.shop-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.shop-trade-toggle {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  color: #111111;
+}
+
+.shop-trade-arrow {
+  font-size: 0.7rem;
+  margin-top: 2px;
+}
+
+.shop-subtitle {
+  font-size: 0.85rem;
+  color: #555c66;
+}
+
+/* dropdown com as trades */
+.shop-trade-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  min-width: 220px;
+
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #dde1e8;
+  padding: 0.45rem 0.5rem;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.16s ease-out, transform 0.16s ease-out;
+  z-index: 10;
+}
+
+.shop-trade-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.shop-trade-menu button {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  padding: 0.4rem 0.45rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #4a505a;
+  cursor: pointer;
+}
+
+.shop-trade-menu button:hover {
+  background: #111111;
+  color: #ffffff;
+}
+
+/* MINI NAV: TRADES / MEN / WOMEN / MEMBERS */
+
+.shop-nav-mini {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  border-bottom: 1px solid #e2e5ea;
+  padding-bottom: 0.75rem;
+  margin-top: 0.8rem;
+  margin-bottom: 1.1rem;
+}
+
+.shop-nav-mini-item {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #6b7380;
+  cursor: pointer;
+}
+
+.shop-nav-mini-item:hover {
+  color: #111111;
+}
+
+.shop-nav-mini-item-members {
+  color: #111111;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .shop-nav-mini {
+    gap: 0.9rem;
+  }
+}
+/* -----------------------------------------*/
+/*   MODAL DE PRODUTO                       */
+/*----------------------------------------- */
+
+.product-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 2000;
+}
+
+.product-modal.open {
+  display: block;
+}
+
+.product-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.product-modal-dialog {
+  position: relative;
+  max-width: 520px;
+  margin: 4rem auto;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem 1.5rem 1.75rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.product-modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.7rem;
+  border: none;
+  background: transparent;
+  font-size: 1.6rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.product-modal-image {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.product-modal-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: #111;
+}
+
+.product-modal-desc {
+  font-size: 0.9rem;
+  color: #555c66;
+}
+
+
+/* responsivo */
+@media (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .shop-panel {
+    padding: 2rem 1.25rem 2.5rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .products-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+
+/* =========================================================
+   THE CLUB – MINI MANIFESTO VISUAL
+   ========================================================= */
+
+.club-grid {
+  padding: 3rem 0 3.25rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* header ocupa a linha inteira */
+.club-header {
+  grid-column: 1 / -1;
+  margin-bottom: 0.5rem;
+}
+
+.club-card {
+  background: var(--bg-dark-alt);
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+}
+
+.club-card-image {
+  aspect-ratio: 4 / 3;
+  background: #15171c;
+  overflow: hidden;
+}
+
+.club-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.94;
+}
+
+.club-card-heading {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.9rem 1rem 0.25rem;
+}
+
+.club-card-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  padding: 0 1rem 1.1rem;
+}
+
+/* responsivo do The Club */
+@media (max-width: 900px) {
+  .club-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+/* =========================================================
+   SEÇÃO: CONTACT / JOIN THE CLUB (ÚLTIMO CONTAINER)
+   ========================================================= */
+
+.contact {
+  background: var(--bg-dark);               /* mantém a base escura do site */
+  border-top: 1px solid var(--border-subtle);
+}
+
+.contact-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3rem 1.25rem 2.5rem;
+}
+
+/* Card principal (parece produto premium) */
+.contact-card {
+  background: var(--bg-dark-alt);
+  border-radius: 18px;
+  border: 1px solid var(--border-subtle);
+  padding: 2rem 2rem 2.25rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+  gap: 2.25rem;
+  align-items: flex-start;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+}
+
+/* Texto lateral (manifesto curto) */
+.contact-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+}
+
+.contact-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.contact-bullets {
+  list-style: none;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.contact-bullets li + li {
+  margin-top: 0.25rem;
+}
+
+/* Formulário */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.contact-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.85rem 1rem;
+}
+
+/* Deixa o telefone sozinho na linha inteira (mais claro que é opcional) */
+.contact-fields .field:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.field label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+}
+
+.field input {
+  padding: 0.6rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: #101215;
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+.field input::placeholder {
+  color: #626773;
+}
+
+.contact-submit {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+}
+
+.contact-small {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+}
+
+/* Links pequenos no rodapé da seção */
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  padding-left: 0.2rem;
+}
+
+.contact-links a {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.contact-links a:hover {
+  color: var(--accent);
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .contact-card {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.75rem 1.5rem 2rem;
+  }
+
+  .contact-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contact-submit {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-inner {
+    padding-top: 2.5rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .contact-card {
+    border-radius: 14px;
+  }
+
+  .contact-links {
+    justify-content: flex-start;
+  }
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+  padding: 1.75rem 0 2rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+/* tablets / telas médias */
+@media (max-width: 900px) {
+  .club-inner,
+  .join-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero {
+    min-height: 70vh;
+    background-position: center center;
+  }
+
+  .levels-grid,
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .main-nav {
+    gap: 1rem;
+    font-size: 0.78rem;
+  }
+}
+
+/* celulares / telas pequenas */
+@media (max-width: 640px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .hero {
+    padding-top: 3rem;
+    background-position: center top;
+  }
+
+  .levels-grid,
+  .products-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .join-form {
+    flex-direction: column;
+  }
+}
+
+
+/* =========================================================
+   MODAL – INCH CALCULATOR
+   ========================================================= */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: none;               /* escondido por padrão */
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.is-open {
+  display: flex;               /* mostra quando tem a classe */
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modal-dialog {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-dark-alt);
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  padding: 1.5rem 1.75rem;
+  max-width: 420px;
+  width: 92%;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+}
+
+/* Botão de fechar */
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.modal-close:hover {
+  color: var(--accent);
+}
+
+/* Card da calculadora */
+.inch-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.inch-card h1 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.inch-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.inch-card label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-top: 0.6rem;
+}
+
+.inch-card input {
+  margin-top: 0.25rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: #101215;
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+.inch-ops {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.inch-ops button {
+  flex: 1;
+  padding: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: #191c23;
+  color: var(--text-main);
+  font-size: 1rem;
+  cursor: pointer;
+}
+.inch-ops button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.error {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--error);
+  min-height: 1em;
+}
+
+.result {
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.85rem;
+}
+
+.result .row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+}
+
+.label-small {
+  color: var(--text-muted);
+}
