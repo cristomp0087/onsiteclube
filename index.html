@@ -20,20 +20,25 @@
   <!-- =========================================================
        HEADER / NAVEGAÇÃO
        ========================================================= -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo">
-        ONSITE <span>CLUB</span>
-      </div>
-      <nav class="main-nav">
-        <a href="#hero">Home</a>
-        <a href="#levels">Levels</a>
-        <a href="#shop">Shop</a>
-        <a href="#club">The Club</a>
-        <a href="#join" class="nav-cta">Join</a>
-      </nav>
-    </div>
-  </header>
+<header class="site-header">
+  <div class="container header-inner">
+
+   <!-- LOGO COM IMAGEM -->
+    <a href="#hero" class="logo">
+      <img src="images/logo-onsite-club-02.png" alt="OnSite Club logo">
+    </a>
+    <!-- NAV PRINCIPAL -->
+    <nav class="main-nav">
+      <a href="#hero">Home</a>
+       <a href="#shop">Shop</a>
+      <a href="#onsite-tools">Tools</a>
+      <a href="#club">The Club</a>
+      <!-- CTA: JOIN → rola até o formulário lá embaixo -->
+      <a href="#contact" class="nav-cta">Join</a>
+    </nav>
+
+  </div>
+</header>
 
   <main>
 
@@ -116,38 +121,39 @@
          ============================== -->
     <div class="shop-landing" id="shopLanding">
       <!-- Card 1 – Men -->
-      <button
-        class="shop-landing-card shop-landing-men"
-        type="button"
-        data-fit="men"
-      >
-        <span class="shop-landing-label">
-          Men
-        </span>
-      </button>
+      <button class="shop-landing-card shop-landing-men" type="button" data-fit="men">
+  <span class="shop-landing-label">
+    <img
+      src="images/logo-onsite-club-02.png"
+      alt="OnSite Club"
+      class="shop-label-logo"
+    />
+    <span class="shop-label-text">Men</span>
+  </span>
+</button>
 
       <!-- Card 2 – Women -->
-      <button
-        class="shop-landing-card shop-landing-women"
-        type="button"
-        data-fit="women"
-      >
-        <span class="shop-landing-label">
-          Women
-        </span>
-      </button>
+      <button class="shop-landing-card shop-landing-women" type="button" data-fit="women">
+  <span class="shop-landing-label">
+    <img
+      src="images/logo-onsite-club-02.png"
+      alt="OnSite Club"
+      class="shop-label-logo"
+    />
+    <span class="shop-label-text">Women</span>
+  </span>
+</button>
 
-      <!-- Card 3 – Members -->
-      <button
-        class="shop-landing-card shop-landing-members"
-        type="button"
-        data-fit="members"
-      >
-        <span class="shop-landing-label">
-          Members
-        </span>
-      </button>
-    </div>
+      <button class="shop-landing-card shop-landing-members" type="button" data-fit="members">
+  <span class="shop-landing-label">
+    <img
+      src="images/logo-onsite-club-02.png"
+      alt="OnSite Club"
+      class="shop-label-logo"
+    />
+    <span class="shop-label-text">Members</span>
+  </span>
+</button>
 
     <!-- ==============================
          CONTEÚDO REAL DO ECOMMERCE
@@ -357,13 +363,27 @@
 </section>
 
 
+
+
+
+
+
 <section id="onsite-tools" class="section tools">
   <div class="container tools-inner">
 
     <header class="tools-header">
-      <h2 class="tools-title">OnSite Tools</h2>
+      <h2 class="tools-title">
+  <span class="tools-title-tag">
+    <img
+      src="images/logo-onsite-club-02.png"
+      alt="OnSite Club"
+      class="tools-logo-img"
+    >
+  </span>
+  <span class="tools-title-text">Tools</span>
+</h2>
       <p class="tools-subtitle">
-        Small tools that save time on site – all in one place.
+        Tools that save time on site – all in one place.
       </p>
     </header>
 
@@ -441,12 +461,23 @@
 <section id="club" class="section club">
   <div class="container club-grid">
 
-    <header class="club-header">
-      <span class="club-tag">About Us</span>
-      <h2 class="club-title">Be OnSite</h2>
-      <p class="club-intro">
-Enjoy everything being OnSite unlocks for you. Start here:      </p>
+    <!-- HEADER DA SEÇÃO -->
+    <header class="section-header">
+
+      <div class="section-title-with-logo">
+        <span>Be</span>
+        <img src="images/logo-onsite-club-02.png"
+             alt="OnSite"
+             class="section-title-logo">
+      </div>
+
+      <p class="section-subtitle">
+        Enjoy everything being OnSite unlocks for you. 
+      </p>
     </header>
+
+
+
 
     <!-- CARD 1 – CHOOSE YOUR TRADE / JOIN -->
     <article class="club-card">
@@ -567,7 +598,15 @@ Enjoy everything being OnSite unlocks for you. Start here:      </p>
     <div class="contact-card">
       <!-- LADO ESQUERDO – TEXTO + IMAGEM -->
       <div class="contact-copy">
-        <h2 class="contact-title">Join the OnSite Club</h2>
+        <h2 class="contact-title section-title-with-logo">
+  <span>Join the</span>
+  <img
+    src="images/logo-onsite-club-02.png"
+    alt="OnSite"
+    class="section-title-logo"
+  >
+  <span>Club</span>
+</h2>
         <p class="contact-text">
           One simple form to <strong>join the club</strong>, ask a question or send feedback.
           No spam – just drops, tools and news for people who actually build.
