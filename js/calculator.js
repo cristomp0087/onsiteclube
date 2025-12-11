@@ -1,125 +1,216 @@
-// ---- CALCULADORA ----
-const inchAInput  = document.getElementById("inchAInput");
-const inchBInput  = document.getElementById("inchBInput");
-const buttons     = document.querySelectorAll(".inch-ops button[data-op]");
-const errorMsg    = document.getElementById("inchErrorMsg");
-const resDecimal  = document.getElementById("inchResDecimal");
-const resFraction = document.getElementById("inchResFraction");
+// =========================================================
+//  VOICE INCH CALCULATOR – CORE
+// =========================================================
 
-function parseInches(str) {
-  if (!str) return NaN;
-  str = str.replace(/"/g, "").trim();
-  if (!str) return NaN;
+document.addEventListener("DOMContentLoaded", () => {
+  // --------- Seletores principais ---------
+  const form = document.getElementById("inchCalcForm");
+  const value1Input = document.getElementById("value1");
+  const value2Input = document.getElementById("value2");
+  const opSelect = document.getElementById("operation");
+  const resultDecimal = document.getElementById("resultDecimal");
+  const resultFraction = document.getElementById("resultFraction");
+  const voiceLangSelect = document.getElementById("voiceLanguage");
+  const calculateBtn = document.getElementById("calculateBtn");
 
-  const parts = str.split(/\s+/);
-  let total = 0;
-
-  if (parts.length === 1) {
-    total = parseFractionOrNumber(parts[0]);
-  } else if (parts.length === 2) {
-    const whole = parseFloat(parts[0]);
-    const frac  = parseFractionOrNumber(parts[1]);
-    if (isNaN(whole) || isNaN(frac)) return NaN;
-    total = whole + frac;
-  } else {
-    return NaN;
-  }
-  return total;
-}
-
-function parseFractionOrNumber(token) {
-  if (token.includes("/")) {
-    const [num, den] = token.split("/");
-    const n = parseFloat(num);
-    const d = parseFloat(den);
-    if (!isFinite(n) || !isFinite(d) || d === 0) return NaN;
-    return n / d;
-  } else {
-    const v = parseFloat(token);
-    return isFinite(v) ? v : NaN;
-  }
-}
-
-function formatInchesFraction(value) {
-  if (!isFinite(value)) return "–";
-
-  const sign = value < 0 ? "-" : "";
-  value = Math.abs(value);
-
-  const whole = Math.floor(value);
-  const frac  = value - whole;
-
-  const denom = 16;
-  let num = Math.round(frac * denom);
-
-  let w = whole;
-  if (num === denom) {
-    w += 1;
-    num = 0;
+  function setText(el, value) {
+    if (el) el.textContent = value;
   }
 
-  function gcd(a, b) {
-    while (b !== 0) {
-      const t = b;
-      b = a % b;
-      a = t;
-    }
-    return a;
-  }
+  // --------- Util: converte texto tipo "5 3/8" em número ----------
+  function parseInchString(str) {
+    if (!str) return NaN;
+    str = String(str).trim();
 
-  if (num === 0) {
-    return sign + w + '"';
-  } else {
-    const g = gcd(num, denom);
-    const simpleNum = num / g;
-    const simpleDen = denom / g;
+    // troca vírgula por ponto pra PT/ES
+    str = str.replace(",", ".");
 
-    if (w === 0) {
-      return sign + simpleNum + "/" + simpleDen + '"';
-    } else {
-      return sign + w + " " + simpleNum + "/" + simpleDen + '"';
-    }
-  }
-}
+    const parts = str.split(/\s+/);
+    let total = 0;
 
-function calculate(op) {
-  errorMsg.textContent = "";
-
-  const a = parseInches(inchAInput.value);
-  const b = parseInches(inchBInput.value);
-
-  if (isNaN(a) || isNaN(b)) {
-    errorMsg.textContent = "Verifique os valores. Use por ex.: 3 1/4, 1/2 ou 3.75";
-    resDecimal.textContent  = "–";
-    resFraction.textContent = "–";
-    return;
-  }
-
-  let result;
-  switch (op) {
-    case "+": result = a + b; break;
-    case "-": result = a - b; break;
-    case "*": result = a * b; break;
-    case "/":
-      if (b === 0) {
-        errorMsg.textContent = "Não é possível dividir por zero.";
-        resDecimal.textContent  = "–";
-        resFraction.textContent = "–";
-        return;
+    for (const part of parts) {
+      if (part.includes("/")) {
+        const [num, den] = part.split("/").map(Number);
+        if (!isNaN(num) && !isNaN(den) && den !== 0) {
+          total += num / den;
+        }
+      } else {
+        const n = Number(part);
+        if (!isNaN(n)) {
+          total += n;
+        }
       }
-      result = a / b;
-      break;
-    default:
-      return;
+    }
+    return total;
   }
 
-  resDecimal.textContent  = result.toFixed(4) + '"';
-  resFraction.textContent = formatInchesFraction(result);
-}
+  // --------- Util: transforma decimal em fração mista (1/16) ----------
+  function toMixedFraction(x) {
+    if (!isFinite(x)) return "--";
+    const sign = x < 0 ? -1 : 1;
+    x = Math.abs(x);
 
-buttons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const op = btn.getAttribute("data-op");
-    calculate(op);
+    const whole = Math.floor(x);
+    const frac = x - whole;
+
+    const den = 16;
+    let num = Math.round(frac * den);
+
+    if (num === 0) return String(sign * whole || 0);
+    if (num === den) {
+      return String(sign * (whole + 1));
+    }
+
+    function gcd(a, b) {
+      return b === 0 ? a : gcd(b, a % b);
+    }
+    const g = gcd(num, den);
+    num /= g;
+    const sd = den / g;
+
+    const prefix = sign * (whole || 0);
+    if (whole === 0) {
+      return `${sign < 0 ? "-" : ""}${num}/${sd}`;
+    }
+    return `${prefix} ${num}/${sd}`;
+  }
+
+  // --------- Cálculo principal ----------
+  function calculateInches(e) {
+    if (e) e.preventDefault();
+
+    if (!value1Input || !value2Input || !opSelect) {
+      console.warn("Algum input/select não foi encontrado pelo JS.");
+      return;
+    }
+
+    const v1 = parseInchString(value1Input.value);
+    const v2 = parseInchString(value2Input.value);
+
+    if (isNaN(v1) || isNaN(v2)) {
+      setText(resultDecimal, "Invalid value");
+      setText(resultFraction, "--");
+      return;
+    }
+
+    let out;
+    switch (opSelect.value) {
+      case "add":
+        out = v1 + v2;
+        break;
+      case "sub":
+        out = v1 - v2;
+        break;
+      case "mul":
+        out = v1 * v2;
+        break;
+      case "div":
+        out = v2 === 0 ? NaN : v1 / v2;
+        break;
+      default:
+        out = NaN;
+    }
+
+    if (!isFinite(out)) {
+      setText(resultDecimal, "Error");
+      setText(resultFraction, "--");
+      return;
+    }
+
+    const dec = out.toFixed(4).replace(/0+$/, "").replace(/\.$/, "");
+    setText(resultDecimal, dec);
+    setText(resultFraction, toMixedFraction(out));
+  }
+
+  if (form) {
+    form.addEventListener("submit", calculateInches);
+  }
+  // Se por algum motivo o botão não estiver dentro do form,
+  // ainda assim forçamos o cálculo ao clicar nele.
+  if (calculateBtn) {
+    calculateBtn.addEventListener("click", calculateInches);
+  }
+
+  // =========================================================
+  //  VOZ – Web Speech API
+  // =========================================================
+
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  let recognition = null;
+  let activeInput = null;
+
+  function getSelectedLangCode() {
+    if (!voiceLangSelect) return "en-US";
+    const v = voiceLangSelect.value;
+    switch (v) {
+      case "en":
+        return "en-US";
+      case "pt":
+        return "pt-BR";
+      case "es":
+        return "es-ES";
+      default:
+        return "en-US";
+    }
+  }
+
+  function initRecognition() {
+    if (!SpeechRecognition) {
+      console.warn("Web Speech API não disponível neste navegador.");
+      document.querySelectorAll(".voice-btn").forEach((btn) => {
+        btn.style.display = "none";
+      });
+      return;
+    }
+
+    recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.addEventListener("result", (event) => {
+      if (!activeInput) return;
+
+      const transcript = event.results[0][0].transcript.trim();
+      console.log("Transcript bruto:", transcript);
+      activeInput.value = transcript;
+
+      if (value1Input.value && value2Input.value) {
+        calculateInches();
+      }
+    });
+
+    recognition.addEventListener("error", (event) => {
+      console.error("SpeechRecognition error:", event.error);
+    });
+
+    recognition.addEventListener("end", () => {
+      activeInput = null;
+    });
+  }
+
+  initRecognition();
+
+  const voiceButtons = document.querySelectorAll(".voice-btn");
+
+  voiceButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (!recognition) return;
+
+      const targetId = btn.dataset.target;
+      const input = document.getElementById(targetId);
+      if (!input) return;
+
+      activeInput = input;
+      recognition.lang = getSelectedLangCode();
+
+      try {
+        recognition.start();
+      } catch (err) {
+        console.error("Não foi possível iniciar reconhecimento:", err);
+      }
+    });
   });
 });

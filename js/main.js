@@ -234,36 +234,6 @@ document.addEventListener('click', (e) => {
 })();
 
 
-// =========================================================
-// ONSITE TOOLS – BOTÕES DAS FERRAMENTAS
-// =========================================================
-
-document.addEventListener('DOMContentLoaded', function () {
-  const calculatorBtn =
-    document.querySelector('[data-tool="calculator"]');
-  const timerBtn =
-    document.querySelector('[data-tool="timer"]');
-
-  // se ainda não existe o modal da calculadora de inches,
-  // mantém só o alerta placeholder; senão deixa o outro script cuidar.
-  const inchModal = document.getElementById('inchCalcModal');
-
-  if (calculatorBtn && !inchModal) {
-    calculatorBtn.addEventListener('click', function () {
-      // Quando você tiver a página da calculadora:
-      // window.location.href = 'tools/calculator.html';
-      alert('Aqui vai abrir a calculadora de inches (em breve).');
-    });
-  }
-
-  if (timerBtn) {
-    timerBtn.addEventListener('click', function () {
-      // Quando você tiver a página do timer:
-      // window.location.href = 'tools/timer.html';
-      alert('Aqui vai abrir o cronômetro / hour tracker (em breve).');
-    });
-  }
-});
 
 // =======================================================
 //             THE CLUB – BE ONSITE MAP
@@ -300,3 +270,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// =========================================================
+// ONSITE TOOLS – BOTÕES DAS FERRAMENTAS
+// =========================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const calculatorBtn = document.querySelector('[data-tool="calculator"]');
+  const timerBtn      = document.querySelector('[data-tool="timer"]');
+
+  // abre a página da calculadora
+  if (calculatorBtn) {
+    calculatorBtn.addEventListener("click", () => {
+      // como teu index.html está na raiz e calculator.html em /tools
+      window.location.href = "./tools/calculator.html";
+    });
+  }
+
+  // placeholder pro timer (por enquanto só alerta)
+  if (timerBtn) {
+    timerBtn.addEventListener("click", () => {
+      alert("Aqui vai abrir o hour tracker (em breve).");
+      // depois: window.location.href = "./tools/timer.html";
+    });
+  }
+});
+
+
+

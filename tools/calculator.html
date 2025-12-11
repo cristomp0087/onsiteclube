@@ -2,83 +2,134 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>OnSite Club – Inch Calculator</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OnSite – Voice Inch Calculator</title>
 
-  <!-- CSS global do site -->
-  <link rel="stylesheet" href="../styles/styles.css" />
-  <!-- CSS específico da calculadora (opcional, mas você já criou a pasta) -->
-  <link rel="stylesheet" href="./calculator.css" />
+  <!-- CSS global do site (opcional, se você quiser manter a base visual) -->
+  <link rel="stylesheet" href="../styles/styles.css">
+
+  <!-- CSS específico da calculadora (está na mesma pasta de calculator.html) -->
+  <link rel="stylesheet" href="calculator.css">
 </head>
-<body>
+<body class="app app--calculator">
 
-  <!-- HEADER REAPROVEITADO -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo">
-        ONSITE <span>CLUB</span>
+  <!-- SHELL GERAL -->
+  <div class="app-shell">
+
+    <!-- ================= HEADER ================= -->
+    <header class="app-header">
+      <div class="app-header-left">
+        <a href="index.html" class="app-logo">
+          <!-- Ajusta o caminho da logo se for outro arquivo -->
+          <img src="images/logo-onsite-club-02.png" alt="OnSite Club" />
+        </a>
+        <span class="app-header-title">Voice Inch Calculator</span>
       </div>
-      <nav class="main-nav">
-        <a href="../index.html#hero">Home</a>
-        <a href="../index.html#levels">Levels</a>
-        <a href="../index.html#shop">Shop</a>
-        <a href="../index.html#club">The Club</a>
-        <a href="../index.html#join" class="nav-cta">Join</a>
-      </nav>
-    </div>
-  </header>
 
-  <!-- CONTEÚDO PRINCIPAL DA CALCULADORA -->
-  <main class="section inch-page">
-    <div class="container">
+      <div class="app-header-right">
+        <label class="lang-select-label" for="speechLang">
+          Voice language
+        </label>
+        <select id="speechLang" class="lang-select">
+          <!-- EN / PT / ES – o JS vai usar esses códigos na Web Speech API -->
+          <option value="en-US" selected>English (US)</option>
+          <option value="pt-BR">Português (BR)</option>
+          <option value="es-ES">Español (ES)</option>
+        </select>
+      </div>
+    </header>
 
-      <div class="modal-dialog inch-card-wrapper">
-        <div class="card inch-card">
-          <h1>Inch Calculator</h1>
-          <p>
-            Digite valores em inches, por exemplo:<br>
-            <strong>3 1/4</strong>, <strong>5 3/8</strong>, <strong>1/2</strong> ou <strong>3.75</strong>.
+    <!-- ================= MAIN ================= -->
+    <main class="app-main">
+
+      <!-- LAYOUT PRINCIPAL: FORM + AJUDA -->
+      <section class="calc-layout" aria-label="Inch calculator">
+        <article class="calc-card">
+          <h1 class="calc-title">Inch Calculator</h1>
+          <p class="calc-intro">
+            Add, subtract, multiply and divide inch measurements.
+            You can type <b>decimals</b> (2.5) or <b>fractions</b> (5 3/8, 3/4).
+            Use the microphone to speak the values.
           </p>
 
-          <label for="inchAInput">Valor A (inches)</label>
-          <input id="inchAInput" type="text" placeholder='Ex.: 3 1/4' />
+          <form id="inchCalcForm" class="calc-form">
+  <!-- PRIMEIRO VALOR -->
+  <div class="field-with-mic">
+    <input
+      id="value1"
+      type="text"
+      inputmode="decimal"
+      placeholder="ex: 5 3/8 or 5.375"
+    />
+    <button
+      type="button"
+      class="voice-btn"
+      data-target="value1"
+      aria-label="Speak first value"
+    >
+      🎤
+    </button>
+  </div>
 
-          <label for="inchBInput">Valor B (inches)</label>
-          <input id="inchBInput" type="text" placeholder='Ex.: 5 3/8' />
+  <!-- OPERAÇÃO -->
+  <select id="operation">
+    <option value="add">Add (+)</option>
+    <option value="sub">Subtract (−)</option>
+    <option value="mul">Multiply (×)</option>
+    <option value="div">Divide (÷)</option>
+  </select>
 
-          <div class="ops inch-ops">
-            <button data-op="+">+</button>
-            <button data-op="-">−</button>
-            <button data-op="*">×</button>
-            <button data-op="/">÷</button>
-          </div>
+  <!-- SEGUNDO VALOR -->
+  <div class="field-with-mic">
+    <input
+      id="value2"
+      type="text"
+      inputmode="decimal"
+      placeholder="ex: 2 1/4 or 2.25"
+    />
+    <button
+      type="button"
+      class="voice-btn"
+      data-target="value2"
+      aria-label="Speak second value"
+    >
+      🎤
+    </button>
+  </div>
 
-          <div class="error" id="inchErrorMsg"></div>
+  <!-- BOTÃO CALCULAR -->
+  <button id="calculateBtn" type="submit" class="calc-btn">
+    CALCULATE
+  </button>
+</form>
 
-          <div class="result">
-            <div class="row">
-              <span class="label-small">Resultado (decimal):</span>
-              <span id="inchResDecimal">–</span>
-            </div>
-            <div class="row">
-              <span class="label-small">Resultado (fração até 1/16"):</span>
-              <span id="inchResFraction">–</span>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <p style="margin-top:1.5rem;font-size:0.85rem;">
-        <a href="../index.html" style="text-decoration:underline;">← Voltar para OnSite Club</a>
+      <!-- RESULTADOS -->
+<div class="results">
+  <p>RESULT (DECIMAL)</p>
+  <p id="resultDecimal">--</p>
+
+  <p>RESULT (MIXED FRACTION)</p>
+  <p id="resultFraction">--</p>
+</div>
+
+<!-- SELECT DO IDIOMA DA VOZ -->
+<select id="voiceLanguage">
+  <option value="en">English (US)</option>
+  <option value="pt">Português (BR)</option>
+  <option value="es">Español (ES)</option>
+</select>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="app-footer">
+      <p class="app-footer-text">
+        OnSite Tools – Voice Inch Calculator • v1.0
       </p>
+    </footer>
+  </div>
 
-    </div>
-  </main>
-
-  <!-- JS DA CALCULADORA -->
+  <!-- JS da calculadora (toda a lógica e voz vai aqui) -->
   <script src="../js/calculator.js"></script>
-
-
-  
 </body>
 </html>
+
